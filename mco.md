@@ -22,25 +22,25 @@ The student will:
 2. Problem Solving
 
 **Course Content Outline:**  
-1. Github, documentation using markdown and latex syntax
-2. Introduction to symbolic tools and plotting
-   A. Using symbolic math software to calculate derivatives and integrals
-   B. Plotting functions
-3. Basic numerical methods for differentiation and integration
-4. Curve fitting and Optimization
-   A. Least square polynomial fitting
-   B. Local and global optimization
-5. Fourier Transform
-6. Monte Carlo Methods
-   A. Introduction to Random numbers
-   B. Monte Carlo Integration
-   C. Markov Chain Monte Carlo
-7. Machine Learning Tools
-   A. Classification using ready-made machine learning tools
-   B. Example of classifying galaxy images
+1. Github, documentation using markdown and latex syntax 
+2. Introduction to symbolic tools and plotting  
+   A. Using symbolic math software to calculate derivatives and integrals  
+   B. Plotting functions  
+3. Basic numerical methods for differentiation and integration  
+4. Curve fitting and Optimization  
+   A. Least square polynomial fitting  
+   B. Local and global optimization  
+5. Fourier Transform  
+6. Monte Carlo Methods  
+   A. Introduction to Random numbers  
+   B. Monte Carlo Integration  
+   C. Markov Chain Monte Carlo  
+7. Machine Learning Tools  
+   A. Classification using ready-made machine learning tools  
+   B. Example of classifying galaxy images  
 
 **Bibliography:**
-Computational Physics, Mark Newmann (2018)
-Computational Physics: Problem Solving with Python, Landau et. al (2015)
+Computational Physics, Mark Newmann (2018)  
+Computational Physics: Problem Solving with Python, Landau et. al (2015)  
 Introduction to the Modeling and Analysis of Complex Systems, Hiroki Sayama, OpenSUNY 
 
