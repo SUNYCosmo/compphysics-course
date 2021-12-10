@@ -13,17 +13,34 @@ for differentiation, integration, curve fitting and optimization. Basic introduc
 
 **Course Student Learning Outcomes (SLOs):**  
 The student will:  
-1. Be able to write code in python for computational and numerical purposes.
-2. document their code and use git version control to make changes to a code by themselves and in collaboration with other students
-3. Apply numerical methods to carry out mathematical operations such as differentiation, integration, curve fitting and optimization
+1. Be able to write codes with documentation for numerical purposes, and host them on github
+2. Apply numerical methods to carry out mathematical operations such as differentiation, integration, curve fitting and optimization
+3. Be able to apply ready-made machine learning algorithms for simple classification problems
 
 **Program Outcomes Supported:**  
 1. Computing and Experimental Design
 2. Problem Solving
 
 **Course Content Outline:**  
-1. Python and github basics  
-2. Symbolic tools and plotting  
-   A. Mathematica  
-   B. Plotting using matplotlib  
-3. 
+1. Github, documentation using markdown and latex syntax
+2. Introduction to symbolic tools and plotting
+   A. Using symbolic math software to calculate derivatives and integrals
+   B. Plotting functions
+3. Basic numerical methods for differentiation and integration
+4. Curve fitting and Optimization
+   A. Least square polynomial fitting
+   B. Local and global optimization
+5. Fourier Transform
+6. Monte Carlo Methods
+   A. Introduction to Random numbers
+   B. Monte Carlo Integration
+   C. Markov Chain Monte Carlo
+7. Machine Learning Tools
+   A. Classification using ready-made machine learning tools
+   B. Example of classifying galaxy images
+
+**Bibliography:**
+Computational Physics, Mark Newmann (2018)
+Computational Physics: Problem Solving with Python, Landau et. al (2015)
+Introduction to the Modeling and Analysis of Complex Systems, Hiroki Sayama, OpenSUNY 
+
