@@ -2,8 +2,8 @@ Computational and Numerical Methods in Physics I
 ---
 **Course Prefix, Number, and Title:** PHY3xx, Computational and Numerical Methods in Physics I
 
-**Course Description:** An introduction to computational and numerical methods used in physics and astronomy. Includes an introduction to version control, documentation and collaborative code writing. Use of open-source libraries to make scientific quality plots. Numerical methods 
-for differentiation, integration, curve fitting and optimization. Basic introduction to random variables and monte carlo methods.  
+**Course Description:** An introduction to computational and numerical methods used in physics and astronomy. Includes an introduction to version control, documentation and collaborative code writing. Use of libraries to make scientific quality plots. Numerical methods 
+for differentiation, integration, curve fitting and optimization. Introduction to random variables and monte carlo methods.  
 
 **Prerequisites:** PHY 314, MAT 326, CSC 221
 
