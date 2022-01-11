@@ -2,8 +2,7 @@ Computational and Numerical Methods in Physics I
 ---
 **Course Prefix, Number, and Title:** PHY3xx, Computational and Numerical Methods in Physics I
 
-**Course Description:** An introduction to computational and numerical methods used in physics and astronomy. Includes an introduction to version control, documentation and collaborative code writing. Use of libraries to make scientific quality plots. Numerical methods 
-for differentiation, integration, curve fitting and optimization. Introduction to random variables and monte carlo methods.  
+**Course Description:** An introduction to computational and numerical methods used in physics and astronomy. Includes an introduction to version control, documentation, collaborative code writing, and creatint scientific quality plots. Numerical methods for differentiation, integration, curve fitting and optimization. Introduction to random variables and monte carlo methods.  
 
 **Prerequisites:** PHY 314, MAT 326, CSC 221
 
@@ -20,8 +19,9 @@ The student will:
 5. Write a report that includes visualization, and present their work in class
 
 **Program Outcomes Supported:**  
-1. Computing and Experimental Design
-2. Problem Solving
+1. **Computing and Experimental Design**: The student will be able to design and carry out experimental investigations, analyze data with appropriate treatment of errors and uncertainities, use appropriate computing tools to solve problems, and form conclusions based on the data and analysis.
+2. **Problem Solving**: The student will demonstrate the ability to think critically and to use appropriate concepts to quantitatively analyze problems or situations involving physics, furthering their understanding of nature and technology.
+3. **Communication**: The student will demonstrate the ability to perform a literature search, to make use of appropriate computational or laboratory skills, and to make an effective written presentation of the results of the paper.
 
 **Course Content Outline:**  
 1. Github, documentation using markdown and latex syntax 
