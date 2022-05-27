@@ -1,0 +1,28 @@
+site_name: PHY 315 Introduction to Computational Methods in Physics 
+nav:
+    - Home: index.md
+    - Introduction: ch1_intro.md
+    - Symbolic Tools: ch2_symbolic.md
+    - Numerical Methods: ch3_numeric.md
+
+theme:
+    name: material
+    
+markdown_extensions:
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+        
+plugins:
+    - mkdocs-jupyter:
+        execute: true
+        ignore_h1_titles: true
+        
+extra_javascript:
+    - javascripts/mathjax.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
