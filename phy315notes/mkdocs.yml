@@ -4,11 +4,15 @@ nav:
     - Introduction: ch1_intro.md
     - Symbolic Tools: ch2_symbolic.md
     - Numerical Methods: ch3_numeric.md
+    - Curve Fitting and Optimization: ch4_fitting.md
+    - Fourier Transform: ch5_fouriertransform.md
+    - Monte Carlo Methods: ch6_montecarlo.md
 
 theme:
     name: material
     
 markdown_extensions:
+    - admonition
     - pymdownx.arithmatex:
         generic: true
     - pymdownx.highlight:
