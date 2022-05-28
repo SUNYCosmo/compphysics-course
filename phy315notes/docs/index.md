@@ -7,7 +7,7 @@ An introduction to computational and numerical methods in physics. Includes an i
 I. [Introduction](ch1_intro.md) (Programming, Version Control and Documentation)  
 II. [Symbolic Tools and Plotting](ch2_symbolic.md)  
 III. [Numerical Methods for Differentiation and Integration](ch3_numeric.md)  
-IV. Curve Fitting and Optimization  
-V. Fourier Transform  
-VI. Monte Carlo Methods  
-VII. Machine Learning Tools  
+IV. [Curve Fitting and Optimization](ch4_fitting.md)  
+V. [Fourier Transform](ch5_fouriertransform.md)  
+VI. [Monte Carlo Methods](ch6_montecarlo.md)  
+VII. [Machine Learning Tools](ch7_mltools.md)  
