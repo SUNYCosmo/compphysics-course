@@ -99,7 +99,8 @@ Refresh the page to estimate using a new set of random points.
 
 </script>
 
-??? note "Python code to estimate $\pi$"
+
+!!! note "Python code to estimate $\pi$"
 
     ``` py title="Estimate area of a unit circle"
     def pi_estimate(total=1000):

@@ -1,17 +1,20 @@
 site_name: PHY 315 Introduction to Computational Methods in Physics 
+
 nav:
     - Home: index.md
     - Introduction: ch1_intro.md
-    - Symbolic Tools: ch2_symbolic.md
+    - Symbolic and Plotting Tools: ch2_symbolic.md
     - Numerical Methods: ch3_numeric.md
     - Curve Fitting and Optimization: ch4_fitting.md
     - Fourier Transform: ch5_fouriertransform.md
     - Monte Carlo Methods: ch6_montecarlo.md
+    - Machine Learning Example: ch7_mltools.md
 
 theme:
     name: material
     
 markdown_extensions:
+    - meta
     - admonition
     - pymdownx.arithmatex:
         generic: true
