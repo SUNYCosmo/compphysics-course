@@ -24,24 +24,53 @@ To calculate an integral, use the `Integrate` command as:
 
 Consider the Gaussian (normal) distribution with one standard deviation ($\sigma=1$) and zero mean $(\mu=0)$:
 
-$$ P(x) = \frac{1}{\sqrt{\pi}} e^{-{x^2}/{2}} $$
+$$ \mathcal{N}(x) = \frac{1}{\sqrt{2 \pi}} e^{-{x^2}/{2}} $$
 
-Suppose we want to find the integral of this function from $-\infty$ to $\infty$. Such a definite integral will result in the area under the curve between the limits. Following the same syntax as above, using `Sqrt[2 Pi]` for $\sqrt{2 \pi}$ and using `Exp[-x^2]` for $e^{-x^2}$, attempt to calculate the definite integral:
+* Suppose we want to find the integral of this function from $-\infty$ to $\infty$. Such a definite integral will result in the area under the curve between the limits. Following the same syntax as above, using `Sqrt[2 Pi]` for $\sqrt{2 \pi}$ and using `Exp[-x^2]` for $e^{-x^2}$, attempt to calculate the definite integral:
 
-$$ \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-x^2/2} dx $$
+    $$ \int_{-\infty}^\infty \frac{e^{-x^2/2}}{\sqrt{2 \pi}} dx $$
 
-??? note "Click here to check your `Mathematica` code and output"
-    ``` mathematica
-    In[3]:= Integrate[(1/Sqrt[Pi]) Exp[-(x^2)/2], {x, -Infinity, Infinity}]
-    Out[3]=1
-    ```
-    That is:
+    ??? note "Check your `Mathematica` code and output"
+        ``` mathematica
+        In[3]:= Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -Infinity, Infinity}]
+        Out[3]= 1
+        ```
+        That is:
     
-    $$\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-x^2/2} dx =1$$
+        $$\frac{1}{\sqrt{2 \pi}}\int_{-\infty}^\infty \frac{e^{-x^2/2}}{\sqrt{2 \pi}} dx =1$$
 
+        The factor of $1/\sqrt{2 \pi}$ is used to normalize the distribution $P(x)$ so that it can be used as a probability density function (pdf). The integral of a pdf over all possible values should result in one.
+
+* Now calculate another definite integral of the same integrand but taking the limits from $-1$ to $1$ i.e. calculate the definite integral:
+
+    $$ \frac{1}{\sqrt{2\pi}}\int_{-1}^{1} e^{-x^2/2} dx $$
+
+    ??? note "Check your `Mathematica` code and output"
+        ``` mathematica
+        In[4]:= Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]
+        Out[4]= Erf[1/Sqrt[2]]
+        ```
+        
+        where [`Erf` is the error function](https://mathworld.wolfram.com/Erf.html){target=_blank}. A numerical output in mathematica can be forced by either using `N[]` or `//N` as follows:
+        
+        ``` mathematica
+        In[5]:= N[Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]]
+        Out[5]= 0.682689
+        ```
+        
+        That is:
     
+        $$\frac{1}{\sqrt{2 \pi}}\int_{-1}^1 e^{-x^2/2} dx = {\rm Erf}\left[\frac{1}{\sqrt{2}}\right] = 0.682689$$
+        
+* Using `Mathematica` now you should be able to obtain the following results:
 
+$$ \int_{-1}^1 \frac{e^{-x^2/2}}{\sqrt{2\pi}} dx = 0.682689 $$
 
+$$ \frac{1}{\sqrt{2 \pi}}\int_{-2}^2 e^{-x^2/2} dx = 0.9545 $$  
+
+$$ \frac{1}{\sqrt{2 \pi}}\int_{-3}^3 e^{-x^2/2} dx = 0.9973 $$  
+
+Next we will learn some plotting syntax in `Mathematica` and use them to plot the integrand used above $\mathcal{N}(x)=e^{-x^2/2}/\sqrt{2 \pi}$ to better understand the normal probability density function.
 
 ## Plotting in Mathematica
 
