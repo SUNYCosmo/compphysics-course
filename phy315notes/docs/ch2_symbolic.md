@@ -7,18 +7,33 @@ SUNY Plattsburgh students can installa `Mathematica` on their personal computer.
 
 ### Performing mathematical calculations in Mathematica
 Try typing `D[x^2, x]` and pressing `Shift+Enter` to evaluate the cell:
-``` mathematica
 
- In[1]:= D[x^2, x]
- Out[1]= 2 x
-```
+=== "Input"
+
+    ``` mathematica
+    D[x^2, x]
+    ```
+
+=== "Output"
+
+    ``` mathematica
+    2 x
+    ```
+
 The command `D[x^2, x]` calculates the derivative of $x^2$ with respect to $x$.
 
 To calculate an integral, use the `Integrate` command as:
-``` mathematica
- In[2]:= Integrate[2 x, x]
- Out[2]= x^2
-```
+
+=== "Input"
+
+    ``` mathematica
+    Integrate[2 x, x]
+    ```
+
+=== "Output"
+    ``` mathematica
+    x^2
+    ```
 
 `Mathematica` can perform many popular integrals that show up in various topics of physics and mathematics. For example:  
 
@@ -31,10 +46,19 @@ $$ \mathcal{N}(x) = \frac{1}{\sqrt{2 \pi}} e^{-{x^2}/{2}} $$
     $$ \int_{-\infty}^\infty \frac{e^{-x^2/2}}{\sqrt{2 \pi}} dx $$
 
     ??? note "Check your `Mathematica` code and output"
-        ``` mathematica
-        In[3]:= Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -Infinity, Infinity}]
-        Out[3]= 1
-        ```
+    
+        === "Input"
+            
+            ``` mathematica
+            Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -Infinity, Infinity}]
+            ```
+            
+        === "Output"
+        
+            ``` mathematica
+            1
+            ```
+        
         That is:
     
         $$\frac{1}{\sqrt{2 \pi}}\int_{-\infty}^\infty \frac{e^{-x^2/2}}{\sqrt{2 \pi}} dx =1$$
@@ -46,17 +70,32 @@ $$ \mathcal{N}(x) = \frac{1}{\sqrt{2 \pi}} e^{-{x^2}/{2}} $$
     $$ \frac{1}{\sqrt{2\pi}}\int_{-1}^{1} e^{-x^2/2} dx $$
 
     ??? note "Check your `Mathematica` code and output"
-        ``` mathematica
-        In[4]:= Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]
-        Out[4]= Erf[1/Sqrt[2]]
-        ```
+    
+        === "Input"
+            
+            ``` mathematica
+            Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]
+            ```
+            
+        === "Output"
+        
+            ``` mathematica
+            Erf[1/Sqrt[2]]
+            ```
         
         where [`Erf` is the error function](https://mathworld.wolfram.com/Erf.html){target=_blank}. A numerical output in mathematica can be forced by either using `N[]` or `//N` as follows:
         
-        ``` mathematica
-        In[5]:= N[Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]]
-        Out[5]= 0.682689
-        ```
+        === "Input"
+        
+            ``` mathematica
+            N[Integrate[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -1, 1}]]
+            ```
+            
+        === "Output"
+            
+            ``` mathematica
+            0.682689
+            ```
         
         That is:
     
@@ -66,25 +105,54 @@ $$ \mathcal{N}(x) = \frac{1}{\sqrt{2 \pi}} e^{-{x^2}/{2}} $$
 
 $$ \int_{-1}^1 \frac{e^{-x^2/2}}{\sqrt{2\pi}} dx = 0.682689 $$
 
-$$ \frac{1}{\sqrt{2 \pi}}\int_{-2}^2 e^{-x^2/2} dx = 0.9545 $$  
+$$ \int_{-2}^2 \frac{e^{-x^2/2}}{\sqrt{2 \pi}} dx = 0.9545 $$  
 
-$$ \frac{1}{\sqrt{2 \pi}}\int_{-3}^3 e^{-x^2/2} dx = 0.9973 $$  
+$$ \int_{-3}^3 \frac{e^{-x^2/2}}{\sqrt{2\pi}} dx = 0.9973 $$  
 
 Next we will learn some plotting syntax in `Mathematica` and use them to plot the integrand used above $\mathcal{N}(x)=e^{-x^2/2}/\sqrt{2 \pi}$ to better understand the normal probability density function.
 
 ## Plotting in Mathematica
 
-``` mathematica
- In[4]:= Plot[(1/Sqrt[2 Pi]) Exp[-x^2], {x, -3, 3}, 
- AxesLabel -> {"x", "P(x)"}, PlotLabel -> "Gaussian Distribution"]
-```
+=== "Input"
+    
+    ``` mathematica
+    Plot[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -5, 5}, AxesLabel -> {"x", "P(x)"}, PlotLabel -> "Gaussian Distribution"]
+    ```   
+=== "Output"
 
-??? note "The output will be as follows"
     <figure markdown>
-        ![Gaussian distribution](figures/gaussian_mm.svg)
+        ![Gaussian distribution](figures/gaussian_mm.svg){ align=left }
     </figure>
 
 
 ## Plotting in Matplotlib
+The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following code:
+
+=== "Input"
+
+    ``` py title="Making plot using matplotlib"
+    import matplotlib.pyplot as plt         # (1)
+    import numpy as np                      # (2)
+    
+    x = np.arange(-5, 5, 0.01)              # (3)
+    y = np.exp(-x*x/2)/np.sqrt(2*np.pi)
+    
+    plt.plot(x, y)
+    plt.xlabel("$x$")
+    plt.ylabel("$\mathcal{N}(x)$")
+    plt.title("Gaussian Distribution")
+    plt.show()
+    ```
+    
+    1. import the `pyplot` plotting module from `matplotlib` library as `plt`
+    2. import the numerical python library `numpy` as `np` for various array and mathematical functions
+    3. create an array from -5 to 5 in increments of 0.01; i.e. $\frac{5-(-5)}{0.01}=1000$ numbers in total. The number of items in the array `x` can be checked either using `len(x)` or using `np.size(x)`
+    
+=== "Output"
+
+    <figure markdown>
+        ![Gaussian distribution](figures/gaussian_matplotlib.svg){ align=left }
+    </figure>
+
 
 ## Example

@@ -12,6 +12,13 @@ nav:
 
 theme:
     name: material
+    features:
+      - content.code.annotate
+      - content.tabs.link
+    palette:
+      primary: teal
+      scheme: default
+    
     
 markdown_extensions:
     - meta
@@ -23,10 +30,16 @@ markdown_extensions:
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
+    - pymdownx.tabbed:
+        alternate_style: true
     - pymdownx.details
     - attr_list
         
 plugins:
+    - search
+    - enumerate-headings:
+        exclude:
+          - index.md
     - mkdocs-jupyter:
         execute: true
         ignore_h1_titles: true

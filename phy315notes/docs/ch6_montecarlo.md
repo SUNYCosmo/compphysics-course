@@ -29,7 +29,7 @@ Consider a unit circle embedded in a square. Now, in each step, we will generate
 
 Then an estimate of the area of the unit circle can be made:
 
-$$ A = \left( \frac{\rm points\ inside\ the\ cirlce}{\rm total\ points} \right) \times {\rm area\ of\ embedding\ square}$$
+$$ A = \left( \frac{\rm points\ inside\ the\ circle}{\rm total\ points} \right) \times {\rm area\ of\ embedding\ square}$$
 
 
 <table>
