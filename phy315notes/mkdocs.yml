@@ -9,6 +9,7 @@ nav:
     - Fourier Transform: ch5_fouriertransform.md
     - Monte Carlo Methods: ch6_montecarlo.md
     - Machine Learning Example: ch7_mltools.md
+    - Further References: references.md 
 
 theme:
     name: material
@@ -34,12 +35,14 @@ markdown_extensions:
         alternate_style: true
     - pymdownx.details
     - attr_list
+    - pymdownx.keys
         
 plugins:
     - search
     - enumerate-headings:
         exclude:
           - index.md
+          - references.md
     - mkdocs-jupyter:
         execute: true
         ignore_h1_titles: true

@@ -1,12 +1,12 @@
 # Symbolic and Plotting Tools
 
 ## Symbolic Math using Mathematica
-`Mathematica` is a popular tool for symbolic math, and is useful for calculating derivatives, integral, and many other tasks.
+`Mathematica` is a popular tool for symbolic math, and is useful for many mathematical tasks such as calculating derivatives and integrals.
 
-SUNY Plattsburgh students can installa `Mathematica` on their personal computer. [See instructions here](https://www.plattsburgh.edu/academics/resources/technology/helpdesk/software.html).
+SUNY Plattsburgh students can install `Mathematica` on their personal computer. [See instructions here](https://www.plattsburgh.edu/academics/resources/technology/helpdesk/software.html).
 
 ### Performing mathematical calculations in Mathematica
-Try typing `D[x^2, x]` and pressing `Shift+Enter` to evaluate the cell:
+Try typing `D[x^2, x]` and pressing ++shift+enter++ to evaluate the cell:
 
 === "Input"
 
@@ -135,18 +135,23 @@ The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following cod
     import numpy as np                      # (2)
     
     x = np.arange(-5, 5, 0.01)              # (3)
-    y = np.exp(-x*x/2)/np.sqrt(2*np.pi)
+    y = np.exp(-x*x/2)/np.sqrt(2*np.pi)     # (4)
     
-    plt.plot(x, y)
-    plt.xlabel("$x$")
-    plt.ylabel("$\mathcal{N}(x)$")
-    plt.title("Gaussian Distribution")
+    plt.plot(x, y)                          # (5)
+    plt.xlabel("$x$")                       # (6)
+    plt.ylabel("$\mathcal{N}(x)$")          # (7)
+    plt.title("Gaussian Distribution")      # (8)
     plt.show()
     ```
     
-    1. import the `pyplot` plotting module from `matplotlib` library as `plt`
+    1. import the `pyplot` plotting interface from `matplotlib` library as `plt`
     2. import the numerical python library `numpy` as `np` for various array and mathematical functions
     3. create an array from -5 to 5 in increments of 0.01; i.e. $\frac{5-(-5)}{0.01}=1000$ numbers in total. The number of items in the array `x` can be checked either using `len(x)` or using `np.size(x)`
+    4. generate a numpy array for $y=\mathcal{N}(x)$
+    5. make the plot using two arrays x and y
+    6. add label on the x axis
+    7. add label on the y axis
+    8. add plot title
     
 === "Output"
 

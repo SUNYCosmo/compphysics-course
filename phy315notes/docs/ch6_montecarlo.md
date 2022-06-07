@@ -15,7 +15,7 @@ The output will be two numbers printed on the screen. The [`random.random()`](ht
 **Use of `#!python random.seed()`**: If you use the same `seed` number (argument) in calling `#!python random.seed(seed)` before calling `#!python random.random()`, the output is identical for the same `seed`. Because the returned random numbers depend on the `seed`, the number generator used by the `random` module is called a *pseudo-*random number generator. Such a generator is useful if you have to reproduce results (e.g. simulation) at a later time. If you do not provide an argument to `random.seed` or set `random.seed(None)`, the current system time is used as a proxy to a random seed and you will get different results each time you call `random.random()`.
 
 
-### Estimating area using a Monte Carlo method
+### Estimating area using random numbers
 
 We can make use of random numbers to estimate areas. Suppose we want to estimate the area of the unit circle. 
 
@@ -25,7 +25,7 @@ We can make use of random numbers to estimate areas. Suppose we want to estimate
 
 In this case, we know the answer is $\pi$. Therefore, we can frame this exercise as a method to estimate the numerical value of $\pi$ as well.
 
-Consider a unit circle embedded in a square. Now, in each step, we will generate two random numbers $(x, y)$, and check whether this randomly generated point lines inside of the unit circle or outside (but still inside the embedding square).
+Consider a unit circle embedded in a square. Now, in each step, we will generate two random numbers $(x, y)$ inside the embedding square, and check whether this randomly generated point lies inside of the unit circle or outside.
 
 Then an estimate of the area of the unit circle can be made:
 
@@ -94,7 +94,7 @@ Refresh the page to estimate using a new set of random points.
     }
     
     for (let i = 0; i < 100000; i++) {
-        setTimeout(function() { randomPoint();}, 1000);                     
+        setTimeout(function() { randomPoint();}, 0);                     
     }
 
 </script>
