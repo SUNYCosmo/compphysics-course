@@ -30,7 +30,73 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
     | - | - | ----------------------- | ----------------- | ---------------- |
     | 0.1 | 0.03 | 0.9948549 | 0.9950042 | 0.01500 |
     | 0.1 | 0.02 | 0.9949378 | 0.9950042 | 0.00667 |
-    | 0.1 | 0.01 | 0.9949876 | 0.9950042 | 0.00167 |
+    | 0.1 | 0.01 | 0.9949876 | 0.9950042 | 0.00166 |
+
+
+<div id="canvas-holder">
+</div>
+
+<script>
+let width = 600;
+let height = 300;
+
+let yf = height/3;
+let xf = 10;
+
+let radius = 7;
+
+function setup() {
+    // setup() runs once
+    var canvas = createCanvas(width,height);
+    canvas.parent('canvas-holder');
+    slider = createSlider(0.01, 1, 1, 0.01);
+    slider.parent('canvas-holder');
+    hdisplay = createP();
+    hdisplay.parent('canvas-holder');
+    frameRate(30);
+}
+
+function converttox(i) {
+    return xf*(i-width/2)/width;
+}
+
+function converttoi(x) {
+    return (x*width/xf)+width/2;
+}
+
+function converttoj(y) {
+    return (height/2)+yf*y;
+}
+
+function central_diff_sin(x, h) {
+    return (sin(x+h)-sin(x-h))/(2*h);
+}
+
+function draw() {
+    // draw() loops forever, until stopped
+    background(240);
+    stroke("gray");
+    line(width/2, 0, width/2, height);
+    line(0, 150, 600, 150);
+
+    h = slider.value();
+    est = (central_diff_sin(0.1, h)).toFixed(7);
+    per = (100*(1-est/cos(0.1))).toFixed(5);
+    hdisplay.html('h is '+h+ ', central difference estimate is ' + est + ', percentage difference is ' + per);
+    
+    for (i=0; i<=600; i=i+0.5) {
+        x = converttox(i);
+        stroke("blue");
+        point(i, converttoj(sin(x)));
+    }
+    
+    stroke("red");
+    circle(converttoi(0.1-h), converttoj(sin(0.1-h)), radius);
+
+    circle(converttoi(0.1+h), converttoj(sin(0.1+h)), radius);
+}
+</script>
+
 
 ## Numerical Integration
 
