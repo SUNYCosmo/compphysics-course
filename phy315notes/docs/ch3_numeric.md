@@ -40,8 +40,8 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
     let width = 640;
     let height = 300;
 
-    let yf = height/3;
-    let xf = 10;
+    let yf = -height/3;
+    let xf = 9;
 
     let radius = 7;
 
