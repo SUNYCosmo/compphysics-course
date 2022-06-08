@@ -28,9 +28,9 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
 === "Accuracy check"
     | x | h | `central_diff_sin(x,h)` | `cos(x)` (actual) | percent accuracy |
     | - | - | ----------------------- | ----------------- | ---------------- |
-    | 0.1 | 0.03 | 0.9948549 | 0.9950042 | 0.01500 |
-    | 0.1 | 0.02 | 0.9949378 | 0.9950042 | 0.00667 |
-    | 0.1 | 0.01 | 0.9949876 | 0.9950042 | 0.00166 |
+    | 0.3 | 0.03 | 0.9551932 | 0.9553365 | 0.01502 |
+    | 0.3 | 0.02 | 0.9552728 | 0.9553365 | 0.00665 |
+    | 0.3 | 0.01 | 0.9553206 | 0.9553365 | 0.00166 |
 
 
 <div id="canvas-holder">
@@ -42,7 +42,8 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
 
     let yf = -height/3;
     let xf = 9;
-
+    
+    let x0 = 0.3;
     let radius = 7;
 
     function setup() {
@@ -51,6 +52,7 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
         canvas.parent('canvas-holder');
         slider = createSlider(0.01, 1.5, 1.5, 0.01);
         slider.parent('canvas-holder');
+        slider.style('width', "200px");
         hdisplay = createP();
         hdisplay.parent('canvas-holder');
         frameRate(30);
@@ -74,6 +76,7 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
     
     function draw_dashed_line(x1, y1, x2, y2) {
         drawingContext.setLineDash([5,5]);
+        strokeWeight(1);
         slope = (y2-y1)/(x2-x1);
         b = y2-slope*x2;
         x3 = converttox(0);
@@ -86,32 +89,54 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
 
     function draw() {
         // draw() loops forever, until stopped
-        background(250);
+        background(246);
+        drawingContext.setLineDash([]);
+        fill(40);
+        strokeWeight(.5);
+        text("O", width/2.1, height/2.1);
+        text("y = sin(x)", 20, 20);
+        
+        h = slider.value();
+        
+        text(String('h = ' + h) , 20, height/1.25);
+        
         stroke("gray");
         line(width/2, 0, width/2, height);
         line(0, height/2, width, height/2);
 
-        h = slider.value();
-        est = (central_diff_sin(0.1, h)).toFixed(7);
-        per = (100*(1-est/cos(0.1))).toFixed(5);
+        est = (central_diff_sin(x0, h)).toFixed(7);
+        per = (100*(1-est/cos(x0))).toFixed(5);
         hdisplay.html('h is '+h+ ', central difference estimate is ' + est + ', percentage difference is ' + per);
     
         for (i=0; i<=width; i=i+0.5) {
             x = converttox(i);
             stroke("blue");
+            strokeWeight(2);
             point(i, converttoj(sin(x)));
         }
-        drawingContext.setLineDash([]);
-        stroke("red");
+
+        pi = converttoi(x0); pj = converttoj(sin(x0));
+        ppi = converttoi(x0+h); ppj = converttoj(sin(x0+h));
+        pmi = converttoi(x0-h); pmj = converttoj(sin(x0-h));
+        
+        stroke("black"); strokeWeight(.5);
+        text("P", 0.98*pi, 0.9*pj);
+        text("P+", 0.98*ppi, 0.9*ppj);
+        text("P-", 1.02*pmi, 1.05*pmj);
+        
+        stroke("red"); strokeWeight(1.5);
         fill("red");
-        circle(converttoi(0.1), converttoj(sin(0.1)), radius);
+        
+        circle(pi, pj, radius);
         fill("none");
-        circle(converttoi(0.1-h), converttoj(sin(0.1-h)), radius);
-        circle(converttoi(0.1+h), converttoj(sin(0.1+h)), radius);
-        draw_dashed_line(0.1-h, sin(0.1-h), 0.1+h, sin(0.1+h));
+        circle(converttoi(x0-h), converttoj(sin(x0-h)), radius);
+        circle(converttoi(x0+h), converttoj(sin(x0+h)), radius);
+        draw_dashed_line(x0-h, sin(x0-h), x0+h, sin(x0+h));     
     }
 </script>
 
+### Estimating accuracy
+In the example above, we knew the correct value of the operation that we were calculating numerically of since $\frac{d\sin(x)}{dx} = \cos x$. However, the actual value of the numerical methods lies when calculating quantities that do not have an easy analytic solution. In such cases, it is useful to be able to have some knowledge of the error in the numerical estimate. 
 
 ## Numerical Integration
 
@@ -120,3 +145,7 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
 ### Simpson's rule
 
 ## Adaptive Integration
+
+## Examples and Exercises
+1. Work out a forward difference approach (i.e. use the slope of line made by $P_+$ and $P$) to taking numerical derivative and compare it with the central difference method discussed above in terms of accuracy.
+2. Suppose you have a sampled function i.e. the function values are known (let's say at a regular interval of $h$). Which one is a better approach -- central difference or forward difference for calculating numerical derivatives?
