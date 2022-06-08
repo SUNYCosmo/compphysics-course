@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.3.0, mkdocs-material-8.2.16" name="generator"/>
+<meta content="mkdocs-1.3.0, mkdocs-material-8.3.3" name="generator"/>
 <title>Numerical Methods - PHY 315 Introduction to Computational Methods in Physics</title>
-<link href="../assets/stylesheets/main.1c3799f8.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.cc9b2e1e.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/main.4a0965b7.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#009485" name="theme-color"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -131,6 +131,20 @@
 <a class="md-nav__link" href="#finite-differences">
     Finite Differences
   </a>
+<nav aria-label="Finite Differences" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-code-and-accuracy-check">
+    Sample code and accuracy check
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#estimating-accuracy">
+    Estimating accuracy
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#numerical-integration">
@@ -154,6 +168,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#adaptive-integration">
     Adaptive Integration
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#examples-and-exercises">
+    Examples and Exercises
   </a>
 </li>
 </ul>
@@ -202,6 +221,20 @@
 <a class="md-nav__link" href="#finite-differences">
     Finite Differences
   </a>
+<nav aria-label="Finite Differences" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-code-and-accuracy-check">
+    Sample code and accuracy check
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#estimating-accuracy">
+    Estimating accuracy
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#numerical-integration">
@@ -227,6 +260,11 @@
     Adaptive Integration
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#examples-and-exercises">
+    Examples and Exercises
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -236,11 +274,178 @@
 <article class="md-content__inner md-typeset">
 <h1 id="numerical-methods-for-differentiation-and-integration"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.</span> Numerical Methods for Differentiation and Integration</h1>
 <h2 id="finite-differences"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.1</span> Finite Differences</h2>
+<p>Numerical derivatives of a function <span class="arithmatex">\(f(x)\)</span> at <span class="arithmatex">\(x=x_0\)</span> can be calculated by the method of finite differences. Recall that the derivative <span class="arithmatex">\(f'(x_0)\)</span> tells you about the slope of the tangent at <span class="arithmatex">\(x=x_0\)</span>. Such a slope can be drawn by drawing a line by considering two nearby points on either side of <span class="arithmatex">\(P(x_0, f(x_0))\)</span>: <span class="arithmatex">\(P_-(x_0-h, f(x_0-h))\)</span> and <span class="arithmatex">\(P_+(x_0+h, f(x_0+h))\)</span> where <span class="arithmatex">\(h\)</span> is small. Therefore, the estimate for the slope and therefore the derivative <span class="arithmatex">\(f'(x_0)\)</span> becomes:</p>
+<div class="arithmatex">\[f'(x_0) = \frac{f(x_0+h)-f(x_0-h)}{x_0+h-(x_0-h)}=\frac{f(x_0+h)-f(x_0-h)}{2 h}\]</div>
+<p>You should convince yourself that as <span class="arithmatex">\(h\rightarrow 0\)</span>, your estimate approaches the exact derivative.</p>
+<h3 id="sample-code-and-accuracy-check"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.1.1</span> Sample code and accuracy check</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Python code for central difference</label><label for="__tabbed_1_2">Accuracy check</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">central difference derivative</span><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">central_diff_sin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="sd">"""Calculate numerical derivative of sin(x) using central difference</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="sd">    Parameters</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="sd">    ----------</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="sd">    x : real</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="sd">        angle in radians</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="sd">    h : real</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="sd">        step size in radians</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="sd">    """</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>h</th>
+<th><code>central_diff_sin(x,h)</code></th>
+<th><code>cos(x)</code> (actual)</th>
+<th>percent accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.3</td>
+<td>0.03</td>
+<td>0.9551932</td>
+<td>0.9553365</td>
+<td>0.01502</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>0.02</td>
+<td>0.9552728</td>
+<td>0.9553365</td>
+<td>0.00665</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>0.01</td>
+<td>0.9553206</td>
+<td>0.9553365</td>
+<td>0.00166</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</input></input></div>
+<div id="canvas-holder">
+</div>
+<script>
+    let width = 640;
+    let height = 300;
+
+    let yf = -height/3;
+    let xf = 9;
+
+    let x0 = 0.3;
+    let radius = 7;
+
+    function setup() {
+        // setup() runs once
+        var canvas = createCanvas(width,height);
+        canvas.parent('canvas-holder');
+        slider = createSlider(0.01, 1.5, 1.5, 0.01);
+        slider.parent('canvas-holder');
+        slider.style('width', "200px");
+        hdisplay = createP();
+        hdisplay.parent('canvas-holder');
+        frameRate(30);
+    }
+
+    function converttox(i) {
+        return xf*(i-width/2)/width;
+    }
+
+    function converttoi(x) {
+        return (x*width/xf)+width/2;
+    }
+
+    function converttoj(y) {
+        return (height/2)+yf*y;
+    }
+
+    function central_diff_sin(x, h) {
+        return (sin(x+h)-sin(x-h))/(2*h);
+    }
+
+    function draw_dashed_line(x1, y1, x2, y2) {
+        drawingContext.setLineDash([5,5]);
+        strokeWeight(1);
+        slope = (y2-y1)/(x2-x1);
+        b = y2-slope*x2;
+        x3 = converttox(0);
+        y3 = slope*x3+b;
+        x4 = converttox(width);
+        y4 = slope*x4+b;
+        stroke("black");
+        line(0, converttoj(y3), width, converttoj(y4));
+    }
+
+    function draw() {
+        // draw() loops forever, until stopped
+        background(246);
+        drawingContext.setLineDash([]);
+        fill(40);
+        strokeWeight(.5);
+        text("O", width/2.1, height/2.1);
+        text("y = sin(x)", 20, 20);
+
+        h = slider.value();
+
+        text(String('h = ' + h) , 20, height/1.25);
+
+        stroke("gray");
+        line(width/2, 0, width/2, height);
+        line(0, height/2, width, height/2);
+
+        est = (central_diff_sin(x0, h)).toFixed(7);
+        per = (100*(1-est/cos(x0))).toFixed(5);
+        hdisplay.html('h is '+h+ ', central difference estimate is ' + est + ', percentage difference is ' + per);
+
+        for (i=0; i<=width; i=i+0.5) {
+            x = converttox(i);
+            stroke("blue");
+            strokeWeight(2);
+            point(i, converttoj(sin(x)));
+        }
+
+        pi = converttoi(x0); pj = converttoj(sin(x0));
+        ppi = converttoi(x0+h); ppj = converttoj(sin(x0+h));
+        pmi = converttoi(x0-h); pmj = converttoj(sin(x0-h));
+
+        stroke("black"); strokeWeight(.5);
+        text("P", 0.98*pi, 0.9*pj);
+        text("P+", 0.98*ppi, 0.9*ppj);
+        text("P-", 1.02*pmi, 1.05*pmj);
+
+        stroke("red"); strokeWeight(1.5);
+        fill("red");
+
+        circle(pi, pj, radius);
+        fill("none");
+        circle(converttoi(x0-h), converttoj(sin(x0-h)), radius);
+        circle(converttoi(x0+h), converttoj(sin(x0+h)), radius);
+        draw_dashed_line(x0-h, sin(x0-h), x0+h, sin(x0+h));     
+    }
+</script>
+<h3 id="estimating-accuracy"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.1.2</span> Estimating accuracy</h3>
+<p>In the example above, we knew the correct value of the operation that we were calculating numerically of since <span class="arithmatex">\(\frac{d\sin(x)}{dx} = \cos x\)</span>. However, the actual value of the numerical methods lies when calculating quantities that do not have an easy analytic solution. In such cases, it is useful to be able to have some knowledge of the error in the numerical estimate. </p>
 <h2 id="numerical-integration"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.2</span> Numerical Integration</h2>
 <h3 id="trapezoid-rule"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.2.1</span> Trapezoid rule</h3>
 <h3 id="simpsons-rule"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.2.2</span> Simpson's rule</h3>
 <h2 id="adaptive-integration"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.3</span> Adaptive Integration</h2>
+<h2 id="examples-and-exercises"><span class="enumerate-headings-plugin enumerate-heading-plugin">3.4</span> Examples and Exercises</h2>
+<ol>
+<li>Work out a forward difference approach (i.e. use the slope of line made by <span class="arithmatex">\(P_+\)</span> and <span class="arithmatex">\(P\)</span>) to taking numerical derivative and compare it with the central difference method discussed above in terms of accuracy.</li>
+<li>Suppose you have a sampled function i.e. the function values are known (let's say at a regular interval of <span class="arithmatex">\(h\)</span>). Which one is a better approach -- central difference or forward difference for calculating numerical derivatives?</li>
+</ol>
 </article>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 </div>
 </div>
 </main>
@@ -290,10 +495,11 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.f758a944.min.js"></script>
 <script src="../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 </body>
 </html>
