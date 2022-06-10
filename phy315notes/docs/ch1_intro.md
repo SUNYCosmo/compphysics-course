@@ -51,6 +51,11 @@ Let us look at one more example `python` code to illustrate the use of variables
     
 ## Version Control
 
+Computer codes (and even documents) may require updating at times. At the early stages of developing a computer code, the frequency of updates may be higher and even for a matured piece of code, there may be maintenance updates that will require you to update the code time and again. **Version control** tools help us with this process in efficiency. They can also be useful if we decide to revert a change at a later time and in case that multiple people are collaborating on the same piece of software or document at once.
 
+We will make use of `github` to learn about and make use of version control. 
 
+Please take the following `github skills` course to begin.
+
+* [Introduction to GitHub - Github Skills](https://github.com/skills/introduction-to-github)
 ## Documentation
