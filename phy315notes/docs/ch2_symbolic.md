@@ -1,5 +1,7 @@
 # Symbolic and Plotting Tools
 
+We will consider symbolic math using `Mathematica`. Alternatives to `Mathematica` for symbolic mathematics include `Maple`, symbolic toolbox for `Matlab`, and the open source python package `sympy`.
+
 ## Symbolic Math using Mathematica
 `Mathematica` is a popular tool for symbolic math, and is useful for many mathematical tasks such as calculating derivatives and integrals.
 

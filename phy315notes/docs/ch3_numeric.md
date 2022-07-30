@@ -1,5 +1,7 @@
 # Numerical Methods for Differentiation and Integration
 
+First, let us look into some methods for calculating numerical derivatives.
+
 ## Finite Differences
 Numerical derivatives of a function $f(x)$ at $x=x_0$ can be calculated by the method of finite differences. Recall that the derivative $f'(x_0)$ tells you about the slope of the tangent at $x=x_0$. Such a slope can be drawn by drawing a line by considering two nearby points on either side of $P(x_0, f(x_0))$: $P_-(x_0-h, f(x_0-h))$ and $P_+(x_0+h, f(x_0+h))$ where $h$ is small. Therefore, the estimate for the slope and therefore the derivative $f'(x_0)$ becomes:
 
@@ -28,12 +30,13 @@ You should convince yourself that as $h\rightarrow 0$, your estimate approaches 
 === "Accuracy check"
     | x | h | `central_diff_sin(x,h)` | `cos(x)` (actual) | percent accuracy |
     | - | - | ----------------------- | ----------------- | ---------------- |
-    | 0.3 | 0.03 | 0.9551932 | 0.9553365 | 0.01502 |
-    | 0.3 | 0.02 | 0.9552728 | 0.9553365 | 0.00665 |
-    | 0.3 | 0.01 | 0.9553206 | 0.9553365 | 0.00166 |
-
+    | 0.3 | 0.04 | 0.9550818 | 0.9553365 | 0.026660 |
+    | 0.3 | 0.03 | 0.9551932 | 0.9553365 | 0.014999 |
+    | 0.3 | 0.02 | 0.9552728 | 0.9553365 | 0.006667 |
+    | 0.3 | 0.01 | 0.9553206 | 0.9553365 | 0.001663 |
 
 <div id="canvas-holder">
+
 </div>
 
 <script src="centraldiff.js">
@@ -55,9 +58,9 @@ We can estimate the error made when numerically calculating derivatives using th
     
     The expression shows that the approximation error $\epsilon$ decreases as $h$ decreases. For our example above with $f(x)=\sin(x)$, $x_0=0.3$ and $h=0.01$:
     
-    $$\epsilon = \frac{|(0.01)^2 \cos{0.1}^2|}{6} = 0.0000159 = 0.00159\% $$
+    $$\epsilon = \frac{|(0.01)^2 (\cos{0.1})|}{6} = 0.00001658 = 0.001658\% $$
     
-    which is approximately equal to the actual percent accuracy calculated earlier.
+    which is close to the actual percent accuracy calculated earlier.
     
 === "Proof using Taylor expansion"
 
@@ -75,7 +78,16 @@ We can estimate the error made when numerically calculating derivatives using th
 
 ## Numerical Integration
 
+Numerical integrations are commonplace in scientific modeling and simulations. If several integrations have to be calculated, not only accuracy and precision but the speed at which those can be obtained becomes important. We will attempt to understand all three concepts (accuracy, precision and the speed of calculation) in the context of three methods of numerical integrations given below.
+
+Working with one dimensional integrals, our goal will be to approximate the definite integral:
+
+$$ I(a, b) = \int_a^b f(x)\ dx. $$
+
+
 ### Trapezoid rule
+
+In the trapezoid rule, the integral is approximated by adding the areas of many trapezoids.
 
 ### Simpson's rule
 

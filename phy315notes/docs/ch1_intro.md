@@ -42,7 +42,7 @@ Let us look at one more example `python` code to illustrate the use of variables
     1. variable `total` is initially assigned a value of zero
     2. note the natural language-like syntax for `for` loop in python; also, note that `range(1, 101)` excludes `101`.
     3. note that indentation of code is important in python
-    4. the `total` variable is printed on screen once the program exits the `for` loop after adding 1 to 100.
+    4. the `total` variable is printed on the screen once the program exits the `for` loop after adding 1 to 100.
 
 === "Output"
     ``` py title="sum of integers from 1 to 100"
@@ -51,11 +51,12 @@ Let us look at one more example `python` code to illustrate the use of variables
     
 ## Version Control
 
-Computer codes (and even documents) may require updating at times. At the early stages of developing a computer code, the frequency of updates may be higher and even for a matured piece of code, there may be maintenance updates that will require you to update the code time and again. **Version control** tools help us with this process in efficiency. They can also be useful if we decide to revert a change at a later time and in case that multiple people are collaborating on the same piece of software or document at once.
+Computer codes (and even documents) may require updating at times. At the early stages of developing a computer code, the frequency of updates may be very high. Even for a matured piece of code, there may be maintenance updates that will require you to update the code time and again. **Version control** tools help us with this process. They can also be useful if we decide to revert a change at a later time and in case that multiple people are collaborating on the same piece of software or document at once.
 
-We will make use of `github` to learn about and make use of version control. 
+We will make use of `github` for version control. The underlying version control software utilized by `github` is called `git`.
 
 Please take the following `github skills` course to begin.
 
 * [Introduction to GitHub - Github Skills](https://github.com/skills/introduction-to-github)
+
 ## Documentation

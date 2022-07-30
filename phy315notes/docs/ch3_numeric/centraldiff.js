@@ -7,6 +7,7 @@ let xf = 9;
 let x0 = 0.3;
 let radius = 7;
 
+// p5js setup
 function setup() {
         // setup() runs once
     var canvas = createCanvas(width,height);
@@ -66,7 +67,7 @@ function draw() {
     line(0, height/2, width, height/2);
 
     est = (central_diff_sin(x0, h)).toFixed(7);
-    per = (100*(1-est/cos(x0))).toFixed(5);
+    per = (100*(1-est/cos(x0))).toFixed(6);
     hdisplay.html('h is '+h+ ', central difference estimate is ' + est + ', percentage difference is ' + per);
 
     for (i=0; i<=width; i=i+0.5) {
@@ -83,7 +84,7 @@ function draw() {
     stroke("black"); strokeWeight(.5);
     text("P", 0.98*pi, 0.9*pj);
     text("P+", 0.98*ppi, 0.9*ppj);
-    text("P-", 1.02*pmi, 1.05*pmj);
+    text("P_", 1.02*pmi, 1.05*pmj);
     
     stroke("red"); strokeWeight(1.5);
     fill("red");
