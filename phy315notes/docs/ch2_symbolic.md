@@ -118,7 +118,7 @@ Next we will learn some plotting syntax in `Mathematica` and use them to plot th
 === "Input"
     
     ``` mathematica
-    Plot[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -5, 5}, AxesLabel -> {"x", "P(x)"}, PlotLabel -> "Gaussian Distribution"]
+    Plot[(1/Sqrt[2 Pi]) Exp[-(x^2)/2], {x, -5, 5}, AxesLabel -> {"x", "N(x)"}, PlotLabel -> "Gaussian Distribution"]
     ```   
 === "Output"
 
@@ -161,5 +161,8 @@ The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following cod
         ![Gaussian distribution](figures/gaussian_matplotlib.svg){ align=left }
     </figure>
 
+We can also plot vector fields using `matplotlib`. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the `streamplot` function.
 
-## Example
+!!! example "Plotting a vector field"
+
+??? question "Assignment: Implement a `stremplot` plot for the field due to two point charges separated by a distance."
