@@ -7,7 +7,9 @@ Since a basic course in programming is a pre-requisite for this course, some lev
 
 The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have `python 3` installed; also install the `numpy` package. One way to make sure that these two packages are installed is to install the [`Anaconda Python Distribution`](https://www.anaconda.com/products/distribution).
 
-Once you have the proper programming environment setup, let's begin with the following example code.
+Once you have the proper programming environment setup, let's begin with the following basic tasks that most programming languages can do - output, loop and condition.
+
+### Printing Output
 
 === "Input"
     
@@ -27,6 +29,7 @@ Once you have the proper programming environment setup, let's begin with the fol
 
 You should expect two numbers as the output: one for log base 10 i.e. $\log_{\rm 10}$ and the other for natural logarithm i.e. $\ln(10)$.
 
+### The `for` loop
 Let us look at one more example `python` code to illustrate the use of variables and `for` loop.
 
 === "Input"
@@ -48,7 +51,61 @@ Let us look at one more example `python` code to illustrate the use of variables
     ``` py title="sum of integers from 1 to 100"
     5050
     ```
+
+### The `if` condition
+
+Consider the following `python` code that checks whether an integer is odd or even.
+
+=== "Input"
+    ``` py title="check if an integer is odd or even"
+    def check_even(n):
+        """Checks if the given integer n is even
+            
+        Args:
+            n: integer
+            
+        Returns:
+            True if n is even, False else
+        """
+
+        if (n%2==0):
+            return True
+            
+        return False
     
+    print (check_even(9), check_even(10))
+    ```
+
+=== "Output"
+    ``` py title="check if an integer is odd or even"
+    False True
+    ```
+
+In the code above we have also used `def` to define a new function. Inside the `def` function block, we have used three double-quote `"""` format for [docstring](https://peps.python.org/pep-0257/).
+
+### The `while` loop
+
+The `while` loop runs as long as the condition given in its syntax is satisfied. The `while` loop can be used instead of the `for` loop to get the sum of integers; see example below:
+
+=== "Input"
+    ``` py title="sum of integers from  1 to 100 using while"
+
+    total = 0
+    i = 0
+    while (i<=100):
+        total = total + i
+        i = i + 1
+
+    print (total)
+    ```
+
+=== "Output"
+    ``` py title="sum of integers from 1 to 100 using while"
+    5050
+    ```
+
+
+
 ## Version Control
 
 Computer codes (and even documents) may require updating at times. At the early stages of developing a computer code, the frequency of updates may be very high. Even for a matured piece of code, there may be maintenance updates that will require you to update the code time and again. **Version control** tools help us with this process. They can also be useful if we decide to revert a change at a later time and in case that multiple people are collaborating on the same piece of software or document at once.
@@ -60,3 +117,5 @@ Please take the following `github skills` course to begin.
 * [Introduction to GitHub - Github Skills](https://github.com/skills/introduction-to-github)
 
 ## Documentation
+
+The code you write will likely be read by other people that may include friends, collegues, professors, customors and users. Therefore, good documentation of code is very important and perhaps even more so for large projects.
