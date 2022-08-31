@@ -1,4 +1,5 @@
-site_name: PHY 315 Introduction to Computational Methods in Physics 
+site_name: PHY 315 Introduction to Computational Methods in Physics
+site_url: https://sunycosmo.github.io/compphysics-course
 
 nav:
     - Home: index.md
@@ -15,7 +16,6 @@ theme:
     name: material
     features:
       - content.code.annotate
-      - content.tabs.link
     palette:
       primary: teal
       scheme: default
@@ -43,9 +43,6 @@ plugins:
         exclude:
           - index.md
           - references.md
-    - mkdocs-jupyter:
-        execute: true
-        ignore_h1_titles: true
         
 extra_javascript:
     - javascripts/mathjax.js
