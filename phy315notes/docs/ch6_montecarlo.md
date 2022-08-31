@@ -39,10 +39,10 @@ $$ A = \left( \frac{\rm points\ inside\ the\ circle}{\rm total\ points} \right) 
 </th>
 <th>
 <br><br><br>
+<input type="range" id="NP", min="100" max="20000" step="100" value="1000" onmouseup="calcpi()">
+<p>Total Points: <label id="label2">0</label></p>
 
 <p>Points Inside: <label id="label1">0</label>  </p>
-
-<p>Total Points: <label id="label2">0</label></p>
 
 <p>Area Estimate: <label id="Aest"></label>  </p>
 <hr>
@@ -52,23 +52,11 @@ Refresh the page to estimate using a new set of random points.
 </table>
 <script>
     var canvas = document.getElementById('canvas1')
+    var NN = document.getElementById('NP')
     
     if (canvas.getContext) {
             var ctx = canvas.getContext('2d');
     }
-    
-    ctx.beginPath();
-    ctx.strokeStyle="blue";
-    ctx.rect(50, 50, 200, 200);
-    ctx.stroke();
-          
-    ctx.beginPath();
-    ctx.strokeStyle="red";
-    ctx.arc(150, 150, 100, 2*Math.PI, false);
-    ctx.stroke();
-            
-    let pts = 0;
-    let total = 0;
         
     function randomPoint() {
     
@@ -92,11 +80,29 @@ Refresh the page to estimate using a new set of random points.
         document.getElementById('Aest').innerHTML = Area;
         
     }
-    
-    for (let i = 0; i < 100000; i++) {
-        setTimeout(function() { randomPoint();}, 0);                     
+
+    function calcpi() {
+        ctx.clearRect(0, 0, 300, 300);
+
+        ctx.beginPath();
+        ctx.strokeStyle="blue";
+        ctx.rect(50, 50, 200, 200);
+        ctx.stroke();
+          
+        ctx.beginPath();
+        ctx.strokeStyle="red";
+        ctx.arc(150, 150, 100, 2*Math.PI, false);
+        ctx.stroke();
+            
+        pts = 0;
+        total = 0;
+
+        for (let i = 0; i < NN.value; i++) {
+        randomPoint();   ctx.stroke();                  
+        }
     }
 
+    calcpi();
 </script>
 
 
