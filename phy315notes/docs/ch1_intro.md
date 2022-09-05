@@ -5,7 +5,7 @@ We will mostly make use of the `python` programming language in this introductio
 
 Since a basic course in programming is a pre-requisite for this course, some level of familiarity with programming is assumed. 
 
-The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have `python 3` installed; also install the `numpy` package. One way to make sure that these two packages are installed is to install the [`Anaconda Python Distribution`](https://www.anaconda.com/products/distribution).
+The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have `python 3` installed; also install the `numpy` package. One way to make sure that these two packages are installed is to install the [`Anaconda Python Distribution`](https://www.anaconda.com/products/distribution). Alternatively, for quick running of code on the web, you could make use of [Google Colab](https://colab.research.google.com), which will open a notebook interface in which you can run python code.
 
 Once you have the proper programming environment setup, let's begin with the following basic tasks that most programming languages can do - output, loop and condition.
 
@@ -104,7 +104,33 @@ The `while` loop runs as long as the condition given in its syntax is satisfied.
     5050
     ```
 
+!!! question "Fibonacci numbers"
 
+    Write a python code to print out Fibonacci numbers upto a certain value say all the Fibonacci numbers less than 10000. The first two Fibonacci numbers are 1,1 and the rule for Fibonacci sequence is that the next number is obtained by a sum of previous two numbers.
+
+## Lists and Arrays
+
+### Lists
+
+=== "Input"
+    ``` py title="list example"
+    List1 = [1, 2, 3]
+    List2 = ["red", "blue", "green"]
+    List3 = [-1, 0, "orange"]
+
+    print (List1[0], List2[1], List3[2])
+
+    List1.append(4)
+    print (List1)
+    ```
+
+=== "Output"
+    ``` py title="list example"
+    1 blue orange
+    [1, 2, 3, 4]
+    ```
+
+### Arrays
 
 ## Version Control
 
@@ -118,4 +144,10 @@ Please take the following `github skills` course to begin.
 
 ## Documentation
 
-The code you write will likely be read by other people that may include friends, collegues, professors, customors and users. Therefore, good documentation of code is very important and perhaps even more so for large projects.
+The code you write will likely be read by other people that may include friends, collegues, professors, customors and users. Therefore, good documentation of code is very important and perhaps even more so for large projects. Large projects typically also follow a certain style guide so that the code and documentation written by numerous contributors have consistent style.
+
+For example, there is [PEP 8 Style Guide for Python Code](https://peps.python.org/pep-0008/) and [PEP 257 Docstring Conventions](https://peps.python.org/pep-0257/) that are generally followed.
+
+Another popular style guide for python is the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
+
+In this course, we will not be worrying about strictly following a style guide, but it is good to know that these exist and that you can make use of one if necessary. 
