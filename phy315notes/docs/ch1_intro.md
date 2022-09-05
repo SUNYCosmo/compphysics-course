@@ -27,7 +27,15 @@ Once you have the proper programming environment setup, let's begin with the fol
     1.0 2.302585092994046
     ```
 
-You should expect two numbers as the output: one for log base 10 i.e. $\log_{\rm 10}$ and the other for natural logarithm i.e. $\ln(10)$.
+You should expect two numbers as the output: one for log base 10 i.e. $\log_{\rm 10}$ and the other for natural logarithm i.e. $\ln(10)$. For the above code to run, you may save the code in a file with name such as `filename.py` and on the command line enter: 
+```
+python filename.py
+```
+Depending on your installation of python, you may also have to install the additional library used in your code; for example, if you do not have the `numpy` library installed, you can install using 
+    
+```
+pip install numpy
+```
 
 ### The `for` loop
 Let us look at one more example `python` code to illustrate the use of variables and `for` loop.
@@ -120,15 +128,24 @@ The `while` loop runs as long as the condition given in its syntax is satisfied.
 
     print (List1[0], List2[1], List3[2])
 
-    List1.append(4)
+    List1.append(4)                         # (1)
+    print (List1)
+
+    List1.pop()                             # (2)
     print (List1)
     ```
+
+    1. Add an element to the list.
+    2. Remove the last element of the list.
 
 === "Output"
     ``` py title="list example"
     1 blue orange
     [1, 2, 3, 4]
+    [1, 2, 3]
     ```
+
+A list can contain different types of elements. As you have seen in the example above, `List3` consists of both integers and an string. Elements can also be added or removed from a list i.e. a list can grow or shrink during the execution of a program.
 
 ### Arrays
 
