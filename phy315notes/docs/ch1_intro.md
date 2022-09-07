@@ -5,7 +5,7 @@ We will mostly make use of the `python` programming language in this introductio
 
 Since a basic course in programming is a pre-requisite for this course, some level of familiarity with programming is assumed. 
 
-The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have `python 3` installed; also install the `numpy` package. One way to make sure that these two packages are installed is to install the [`Anaconda Python Distribution`](https://www.anaconda.com/products/distribution). Alternatively, for quick running of code on the web, you could make use of [Google Colab](https://colab.research.google.com), which will open a notebook interface in which you can run python code.
+The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have `python 3` installed; also install the `numpy` package. One way to make sure that these two packages are installed is to install the [`Anaconda Python Distribution`](https://www.anaconda.com/products/distribution). Alternatively, for quick running of code on the web, you could make use of [Google Colab](https://colab.research.google.com), which will open a notebook interface in which you can run python code. Google Colab uses a modified versin of [Jupyter Notebook](https://jupyter.org/); you can try to install/run jupyter notebook on your computer if you find the notebook interface useful. Alternatively, 
 
 Once you have the proper programming environment setup, let's begin with the following basic tasks that most programming languages can do - output, loop and condition.
 
@@ -118,7 +118,7 @@ The `while` loop runs as long as the condition given in its syntax is satisfied.
 
 ## Lists and Arrays
 
-### Lists
+### In-built Lists in Python
 
 === "Input"
     ``` py title="list example"
@@ -148,6 +148,89 @@ The `while` loop runs as long as the condition given in its syntax is satisfied.
 A list can contain different types of elements. As you have seen in the example above, `List3` consists of both integers and an string. Elements can also be added or removed from a list i.e. a list can grow or shrink during the execution of a program.
 
 ### Arrays
+
+The `array` module in python supports an object type called `Array` that can do more mathematical operations than the in-built python lists. However, the `numpy` module has support for a similar object `array` with support for more mathematical operations (including vector and matrix operations). Therefore, we will look at the `numpy.array` object:
+
+=== "Input"
+    ``` py title="simple numpy.array examples"
+
+    import numpy as np
+    
+    # first a simple 1D array
+    arr1 = np.array([1.0, 2.0, 3.0])
+    print (arr1)
+
+    # a simple 2D array
+    arr2 = np.array([[1.0, 2.0, 3.0], [1.5, 2.5, 3.5]])
+    print (arr2)
+
+    # to access the element of an array we can use indexing as follows:
+    print (arr2[0, 0])  # outputs 1.0 (the first row, first column)
+    print (arr2[0, 1])  # outputs 2.0 (the first row, second column)
+    print (arr1[1]) # outputs 2.0 (the second element of a 1D array)
+    ```
+
+=== "Output"
+    ``` py title="simple numpy.array examples"
+    [[1.  2.  3. ]
+    [1.5 2.5 3.5]]
+
+    1.0
+    2.0
+    2.0
+    ```
+
+Now, let us make use of the `numpy.array` and `numpy.sum` to calculate the sum of integers from 1 to 100.
+
+=== "Input"
+    ``` py title="numpy.array example to sum integers from 1 to 100"
+    import numpy as np
+    
+    arr3 = np.array([i for i in range(0, 101)])
+
+    print (arr3)
+
+    print (np.sum(arr3))
+    ```
+
+=== "Output"
+    ``` py title="numpy.array example to sum integers from 1 to 100"
+    array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
+            13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
+            26,  27,  28,  29,  30,  31,  32,  33,  34,  35,  36,  37,  38,
+            39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,  51,
+            52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62,  63,  64,
+            65,  66,  67,  68,  69,  70,  71,  72,  73,  74,  75,  76,  77,
+            78,  79,  80,  81,  82,  83,  84,  85,  86,  87,  88,  89,  90,
+            91,  92,  93,  94,  95,  96,  97,  98,  99, 100])  
+
+    5050
+    ```
+
+In the example above, instead of `arr2 = np.array([i for i in range(0, 101)])` we could have used `arr2 = np.array(range(0, 101))` or simply `arr2 = range(0, 101)` and still obtained the desired result of `5050`. However, the way the syntax is written in the example is more powerful than these substitutes. For example, you can obtain the sum of squares of integers from 1 to 100 $\left(\sum_{i=1}^{100} i^2\right)$ by the following code:
+
+```python
+arr3 = np.array([i**2.0 for i in range(0, 101)])
+print (np.sum(arr3))
+```
+
+### Numpy arrays as vectors and matrices
+A numpy array of one dimension can be thought of as a vector, and numpy supports vector operations such as dot product.
+
+=== "Input"
+    ``` py title="numpy array as a vector"
+    import numpy as np
+    v1 = np.array([1.0, -1.0, 2.0])
+    v2 = np.array([-1.0, 1.0, 2.0])
+
+    v1dotv2 = v1.dot(v2)    # you could also use np.dot(v1, v2)
+    print ("The dot product is: ", v1dotv2)
+    ```
+
+=== "Output"
+    ``` py title="numpy array as a vector"
+    The dot product is: 2.0
+    ```
 
 ## Version Control
 
