@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch1_intro/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch2_symbolic/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch3_numeric/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch4_fitting/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch5_fouriertransform/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch6_montecarlo/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch7_mltools/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/references/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

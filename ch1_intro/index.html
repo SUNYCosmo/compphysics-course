@@ -154,13 +154,18 @@
 <nav aria-label="Lists and Arrays" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lists">
-    Lists
+<a class="md-nav__link" href="#in-built-lists-in-python">
+    In-built Lists in Python
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#arrays">
     Arrays
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numpy-arrays-as-vectors-and-matrices">
+    Numpy arrays as vectors and matrices
   </a>
 </li>
 </ul>
@@ -264,13 +269,18 @@
 <nav aria-label="Lists and Arrays" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lists">
-    Lists
+<a class="md-nav__link" href="#in-built-lists-in-python">
+    In-built Lists in Python
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#arrays">
     Arrays
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numpy-arrays-as-vectors-and-matrices">
+    Numpy arrays as vectors and matrices
   </a>
 </li>
 </ul>
@@ -297,7 +307,7 @@
 <h2 id="review-of-programming"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1</span> Review of Programming</h2>
 <p>We will mostly make use of the <code>python</code> programming language in this introduction and for much of the course (but not always as we will also look at <code>Mathematica</code>).</p>
 <p>Since a basic course in programming is a pre-requisite for this course, some level of familiarity with programming is assumed. </p>
-<p>The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have <code>python 3</code> installed; also install the <code>numpy</code> package. One way to make sure that these two packages are installed is to install the <a href="https://www.anaconda.com/products/distribution"><code>Anaconda Python Distribution</code></a>. Alternatively, for quick running of code on the web, you could make use of <a href="https://colab.research.google.com">Google Colab</a>, which will open a notebook interface in which you can run python code.</p>
+<p>The first step is to make sure that you have the proper environment setup on your computer. Make sure that you have <code>python 3</code> installed; also install the <code>numpy</code> package. One way to make sure that these two packages are installed is to install the <a href="https://www.anaconda.com/products/distribution"><code>Anaconda Python Distribution</code></a>. Alternatively, for quick running of code on the web, you could make use of <a href="https://colab.research.google.com">Google Colab</a>, which will open a notebook interface in which you can run python code. Google Colab uses a modified versin of <a href="https://jupyter.org/">Jupyter Notebook</a>; you can try to install/run jupyter notebook on your computer if you find the notebook interface useful. Alternatively, </p>
 <p>Once you have the proper programming environment setup, let's begin with the following basic tasks that most programming languages can do - output, loop and condition.</p>
 <h3 id="printing-output"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1.1</span> Printing Output</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Input</label><label for="__tabbed_1_2">Output</label></div>
@@ -404,7 +414,7 @@ Depending on your installation of python, you may also have to install the addit
 <p>Write a python code to print out Fibonacci numbers upto a certain value say all the Fibonacci numbers less than 10000. The first two Fibonacci numbers are 1,1 and the rule for Fibonacci sequence is that the next number is obtained by a sum of previous two numbers.</p>
 </div>
 <h2 id="lists-and-arrays"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> Lists and Arrays</h2>
-<h3 id="lists"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.1</span> Lists</h3>
+<h3 id="in-built-lists-in-python"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.1</span> In-built Lists in Python</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"/><input id="__tabbed_5_2" name="__tabbed_5" type="radio"/><div class="tabbed-labels"><label for="__tabbed_5_1">Input</label><label for="__tabbed_5_2">Output</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -435,6 +445,88 @@ Depending on your installation of python, you may also have to install the addit
 </div>
 <p>A list can contain different types of elements. As you have seen in the example above, <code>List3</code> consists of both integers and an string. Elements can also be added or removed from a list i.e. a list can grow or shrink during the execution of a program.</p>
 <h3 id="arrays"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.2</span> Arrays</h3>
+<p>The <code>array</code> module in python supports an object type called <code>Array</code> that can do more mathematical operations than the in-built python lists. However, the <code>numpy</code> module has support for a similar object <code>array</code> with support for more mathematical operations (including vector and matrix operations). Therefore, we will look at the <code>numpy.array</code> object:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"/><input id="__tabbed_6_2" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="__tabbed_6_1">Input</label><label for="__tabbed_6_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">simple numpy.array examples</span><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>
+<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="c1"># first a simple 1D array</span>
+<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr1</span><span class="p">)</span>
+<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a>
+<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1"># a simple 2D array</span>
+<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]])</span>
+<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
+<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a>
+<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="c1"># to access the element of an array we can use indexing as follows:</span>
+<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># outputs 1.0 (the first row, first column)</span>
+<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># outputs 2.0 (the first row, second column)</span>
+<a href="#__codelineno-12-14" id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># outputs 2.0 (the second element of a 1D array)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">simple numpy.array examples</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="p">[[</span><span class="mf">1.</span>  <span class="mf">2.</span>  <span class="mf">3.</span> <span class="p">]</span>
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="p">[</span><span class="mf">1.5</span> <span class="mf">2.5</span> <span class="mf">3.5</span><span class="p">]]</span>
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="mf">1.0</span>
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="mf">2.0</span>
+<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="mf">2.0</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Now, let us make use of the <code>numpy.array</code> and <code>numpy.sum</code> to calculate the sum of integers from 1 to 100.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"/><input id="__tabbed_7_2" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="__tabbed_7_1">Input</label><label for="__tabbed_7_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">numpy.array example to sum integers from 1 to 100</span><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a>
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="n">arr3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">)])</span>
+<a href="#__codelineno-14-4" id="__codelineno-14-4" name="__codelineno-14-4"></a>
+<a href="#__codelineno-14-5" id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="nb">print</span> <span class="p">(</span><span class="n">arr3</span><span class="p">)</span>
+<a href="#__codelineno-14-6" id="__codelineno-14-6" name="__codelineno-14-6"></a>
+<a href="#__codelineno-14-7" id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="nb">print</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr3</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">numpy.array example to sum integers from 1 to 100</span><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">array</span><span class="p">([</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">,</span>   <span class="mi">4</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span>   <span class="mi">6</span><span class="p">,</span>   <span class="mi">7</span><span class="p">,</span>   <span class="mi">8</span><span class="p">,</span>   <span class="mi">9</span><span class="p">,</span>  <span class="mi">10</span><span class="p">,</span>  <span class="mi">11</span><span class="p">,</span>  <span class="mi">12</span><span class="p">,</span>
+<a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a>        <span class="mi">13</span><span class="p">,</span>  <span class="mi">14</span><span class="p">,</span>  <span class="mi">15</span><span class="p">,</span>  <span class="mi">16</span><span class="p">,</span>  <span class="mi">17</span><span class="p">,</span>  <span class="mi">18</span><span class="p">,</span>  <span class="mi">19</span><span class="p">,</span>  <span class="mi">20</span><span class="p">,</span>  <span class="mi">21</span><span class="p">,</span>  <span class="mi">22</span><span class="p">,</span>  <span class="mi">23</span><span class="p">,</span>  <span class="mi">24</span><span class="p">,</span>  <span class="mi">25</span><span class="p">,</span>
+<a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a>        <span class="mi">26</span><span class="p">,</span>  <span class="mi">27</span><span class="p">,</span>  <span class="mi">28</span><span class="p">,</span>  <span class="mi">29</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">31</span><span class="p">,</span>  <span class="mi">32</span><span class="p">,</span>  <span class="mi">33</span><span class="p">,</span>  <span class="mi">34</span><span class="p">,</span>  <span class="mi">35</span><span class="p">,</span>  <span class="mi">36</span><span class="p">,</span>  <span class="mi">37</span><span class="p">,</span>  <span class="mi">38</span><span class="p">,</span>
+<a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a>        <span class="mi">39</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">41</span><span class="p">,</span>  <span class="mi">42</span><span class="p">,</span>  <span class="mi">43</span><span class="p">,</span>  <span class="mi">44</span><span class="p">,</span>  <span class="mi">45</span><span class="p">,</span>  <span class="mi">46</span><span class="p">,</span>  <span class="mi">47</span><span class="p">,</span>  <span class="mi">48</span><span class="p">,</span>  <span class="mi">49</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>  <span class="mi">51</span><span class="p">,</span>
+<a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a>        <span class="mi">52</span><span class="p">,</span>  <span class="mi">53</span><span class="p">,</span>  <span class="mi">54</span><span class="p">,</span>  <span class="mi">55</span><span class="p">,</span>  <span class="mi">56</span><span class="p">,</span>  <span class="mi">57</span><span class="p">,</span>  <span class="mi">58</span><span class="p">,</span>  <span class="mi">59</span><span class="p">,</span>  <span class="mi">60</span><span class="p">,</span>  <span class="mi">61</span><span class="p">,</span>  <span class="mi">62</span><span class="p">,</span>  <span class="mi">63</span><span class="p">,</span>  <span class="mi">64</span><span class="p">,</span>
+<a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a>        <span class="mi">65</span><span class="p">,</span>  <span class="mi">66</span><span class="p">,</span>  <span class="mi">67</span><span class="p">,</span>  <span class="mi">68</span><span class="p">,</span>  <span class="mi">69</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">71</span><span class="p">,</span>  <span class="mi">72</span><span class="p">,</span>  <span class="mi">73</span><span class="p">,</span>  <span class="mi">74</span><span class="p">,</span>  <span class="mi">75</span><span class="p">,</span>  <span class="mi">76</span><span class="p">,</span>  <span class="mi">77</span><span class="p">,</span>
+<a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a>        <span class="mi">78</span><span class="p">,</span>  <span class="mi">79</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span>  <span class="mi">81</span><span class="p">,</span>  <span class="mi">82</span><span class="p">,</span>  <span class="mi">83</span><span class="p">,</span>  <span class="mi">84</span><span class="p">,</span>  <span class="mi">85</span><span class="p">,</span>  <span class="mi">86</span><span class="p">,</span>  <span class="mi">87</span><span class="p">,</span>  <span class="mi">88</span><span class="p">,</span>  <span class="mi">89</span><span class="p">,</span>  <span class="mi">90</span><span class="p">,</span>
+<a href="#__codelineno-15-8" id="__codelineno-15-8" name="__codelineno-15-8"></a>        <span class="mi">91</span><span class="p">,</span>  <span class="mi">92</span><span class="p">,</span>  <span class="mi">93</span><span class="p">,</span>  <span class="mi">94</span><span class="p">,</span>  <span class="mi">95</span><span class="p">,</span>  <span class="mi">96</span><span class="p">,</span>  <span class="mi">97</span><span class="p">,</span>  <span class="mi">98</span><span class="p">,</span>  <span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>  
+<a href="#__codelineno-15-9" id="__codelineno-15-9" name="__codelineno-15-9"></a>
+<a href="#__codelineno-15-10" id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="mi">5050</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>In the example above, instead of <code>arr2 = np.array([i for i in range(0, 101)])</code> we could have used <code>arr2 = np.array(range(0, 101))</code> or simply <code>arr2 = range(0, 101)</code> and still obtained the desired result of <code>5050</code>. However, the way the syntax is written in the example is more powerful than these substitutes. For example, you can obtain the sum of squares of integers from 1 to 100 <span class="arithmatex">\(\left(\sum_{i=1}^{100} i^2\right)\)</span> by the following code:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">arr3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mf">2.0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">)])</span>
+<a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="nb">print</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr3</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="numpy-arrays-as-vectors-and-matrices"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.3</span> Numpy arrays as vectors and matrices</h3>
+<p>A numpy array of one dimension can be thought of as a vector, and numpy supports vector operations such as dot product.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><input id="__tabbed_8_2" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Input</label><label for="__tabbed_8_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">numpy array as a vector</span><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a>
+<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="n">v1dotv2</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>    <span class="c1"># you could also use np.dot(v1, v2)</span>
+<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="nb">print</span> <span class="p">(</span><span class="s2">"The dot product is: "</span><span class="p">,</span> <span class="n">v1dotv2</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">numpy array as a vector</span><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">The</span> <span class="n">dot</span> <span class="n">product</span> <span class="ow">is</span><span class="p">:</span> <span class="mf">2.0</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="version-control"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.3</span> Version Control</h2>
 <p>Computer codes (and even documents) may require updating at times. At the early stages of developing a computer code, the frequency of updates may be very high. Even for a matured piece of code, there may be maintenance updates that will require you to update the code time and again. <strong>Version control</strong> tools help us with this process. They can also be useful if we decide to revert a change at a later time and in case that multiple people are collaborating on the same piece of software or document at once.</p>
 <p>We will make use of <code>github</code> for version control. The underlying version control software utilized by <code>github</code> is called <code>git</code>.</p>
