@@ -5,12 +5,12 @@ nav:
     - Home: index.md
     - Introduction: ch1_intro.md
     - Symbolic and Plotting Tools: ch2_symbolic.md
-    - Numerical Methods: ch3_numeric.md
-    - Curve Fitting and Optimization: ch4_fitting.md
-    - Fourier Transform: ch5_fouriertransform.md
-    - Monte Carlo Methods: ch6_montecarlo.md
-    - Machine Learning Example: ch7_mltools.md
-    - Further References: references.md 
+    #- Numerical Methods: ch3_numeric.md
+    #- Curve Fitting and Optimization: ch4_fitting.md
+    #- Fourier Transform: ch5_fouriertransform.md
+    #- Monte Carlo Methods: ch6_montecarlo.md
+    #- Machine Learning Example: ch7_mltools.md
+    #- Further References: references.md
 
 theme:
     name: material
