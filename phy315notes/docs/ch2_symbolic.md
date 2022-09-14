@@ -189,19 +189,24 @@ We can also plot vector fields using `matplotlib`. Let us plot the electric fiel
     
     where `x` and `y` can be 1D arrays that form the grid of the vector plot, but `u` and `v` must be 2D arrays (like a matrix) providing the $x$ and $y$ components of the vector field at each point. 
 
+    Let us first brainstorm one of the ways to obtain a vector lines plot using `streamplot` due to a unit positive charge at the origin. For that we will use a mix of programming and natural language without worrying about the syntax, but focusing on the algorithm; we may call this a pseudocode.
+
     ``` title="pseudocode"
-    1. q = 1 
-    2. k = 1
-    3. x, y = -5 to 5 with 0.1 stepsize
-    3. U, V = 100x100 matrices with zeros
-    4. iterate over x:
-    5.   iterate over y:
-    6.     rcube = sqrt(x*x+y*y)**3.0 
-    7.     Ex = k * q * x / rcube
-    8.     Ey = k * q * y / rcube
-    9.     U[i,j] = Ex
-    10.    V[i,j] = Ey
-    11. streamplot(x, y, U, V)
+    q = 1 
+    k = 1
+    xlist, ylist = -5 to 5 with 0.1 stepsize
+    U, V = 100x100 arrays (matrices) with all elements as zeros
+    i, j = 0
+    for x in xlist:
+      for y in ylist:
+        rcube = sqrt(x*x+y*y)**3.0 
+        Ex = k * q * x / rcube
+        Ey = k * q * y / rcube
+        U[i,j] = Ex
+        V[i,j] = Ey
+        j = j + 1
+        i = i + 1 
+    streamplot(x, y, U, V)
     ```
 
 ??? question "Assignment: Implement a `streamplot` plot for the field due to two point charges separated by a distance."
