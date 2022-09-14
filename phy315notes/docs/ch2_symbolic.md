@@ -128,7 +128,10 @@ Next we will learn some plotting syntax in `Mathematica` and use them to plot th
 
 
 ## Plotting in Matplotlib
-The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following code:
+
+`matplotlib` is a widely used python plotting library. It can be used in `google colab`, but you may need to install it ([see instructions](https://matplotlib.org/stable/users/installing/index.html)) if you have not already installed `matplotlib` on your computer.
+
+The plot of the normal distribution $\mathcal{N}(x)$ can be made in `matplotlib` using the following code:
 
 === "Input"
 
@@ -143,7 +146,7 @@ The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following cod
     plt.xlabel("$x$")                       # (6)
     plt.ylabel("$\mathcal{N}(x)$")          # (7)
     plt.title("Gaussian Distribution")      # (8)
-    plt.show()
+    plt.show()                              # (9)
     ```
     
     1. import the `pyplot` plotting interface from `matplotlib` library as `plt`
@@ -151,9 +154,10 @@ The plot of $\mathcal{N}(x)$ can be made in `matplotlib` using the following cod
     3. create an array from -5 to 5 in increments of 0.01; i.e. $\frac{5-(-5)}{0.01}=1000$ numbers in total. The number of items in the array `x` can be checked either using `len(x)` or using `np.size(x)`
     4. generate a numpy array for $y=\mathcal{N}(x)$
     5. make the plot using two arrays x and y
-    6. add label on the x axis
+    6. add label on the x axis; the dollar signs means we use LaTex syntax for mathematical typesetting.
     7. add label on the y axis
     8. add plot title
+    9. `plt.show()` may or may not be needed depending on the backend used for plotting; e.g. not needed in notebook interfaces such as jupyter/google colab.
     
 === "Output"
 
@@ -165,4 +169,39 @@ We can also plot vector fields using `matplotlib`. Let us plot the electric fiel
 
 !!! example "Plotting a vector field"
 
-??? question "Assignment: Implement a `stremplot` plot for the field due to two point charges separated by a distance."
+    First think about what you need to do to make such a field plot given that you have a function in matplotlib that directly generates a field plot if you provide it with vector field values in a grid. In 2D you will need to provide the $x-$ component, $E_x$ and the $y-$component, $E_y$ of the electric field vector at each point. Recall:
+
+    $$ \vec{E}(x,y) = \frac{k q}{r^2} \hat{r}  = \frac{k q}{r^3} \left( x \hat{i} + y \hat{j}\right)$$
+
+    is the electric field at a point $(x,y)$ due to a charge $q$ at the origin, where $r=\sqrt{x^2+y^2}$.
+
+    Similarly, if the point charge is located at $(x_0, y_0)$ rather than the origin:
+
+    $$ \vec{E}(x,y) = \frac{k q}{r^3} \left[ (x-x_0)\hat{i}+(y-y_0)\hat{j}\right] $$
+
+    where, $r = \sqrt{(x-x_0)^2 + (y-y_0)^2}$.
+
+    Next, we need to understand the arguments of the `streamplot` function. In the documentation it is mentioned that at least four arguments are required:
+
+    ```
+    matplotlib.pyplot.streamplot(x, y, u, v)
+    ```
+    
+    where `x` and `y` can be 1D arrays that form the grid of the vector plot, but `u` and `v` must be 2D arrays (like a matrix) providing the $x$ and $y$ components of the vector field at each point. 
+
+    ``` title="pseudocode"
+    1. q = 1 
+    2. k = 1
+    3. x, y = -5 to 5 with 0.1 stepsize
+    3. U, V = 100x100 matrices with zeros
+    4. iterate over x:
+    5.   iterate over y:
+    6.     rcube = sqrt(x*x+y*y)**3.0 
+    7.     Ex = k * q * x / rcube
+    8.     Ey = k * q * y / rcube
+    9.     U[i,j] = Ex
+    10.    V[i,j] = Ey
+    11. streamplot(x, y, U, V)
+    ```
+
+??? question "Assignment: Implement a `streamplot` plot for the field due to two point charges separated by a distance."
