@@ -311,7 +311,8 @@
 </div>
 </div>
 <h2 id="plotting-in-matplotlib"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.3</span> Plotting in Matplotlib</h2>
-<p>The plot of <span class="arithmatex">\(\mathcal{N}(x)\)</span> can be made in <code>matplotlib</code> using the following code:</p>
+<p><code>matplotlib</code> is a widely used python plotting library. It can be used in <code>google colab</code>, but you may need to install it (<a href="https://matplotlib.org/stable/users/installing/index.html">see instructions</a>) if you have not already installed <code>matplotlib</code> on your computer.</p>
+<p>The plot of the normal distribution <span class="arithmatex">\(\mathcal{N}(x)\)</span> can be made in <code>matplotlib</code> using the following code:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"/><input id="__tabbed_7_2" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="__tabbed_7_1">Input</label><label for="__tabbed_7_2">Output</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -325,7 +326,7 @@
 <a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$x$"</span><span class="p">)</span>                       <span class="c1"># (6)</span>
 <a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$\mathcal</span><span class="si">{N}</span><span class="s2">(x)$"</span><span class="p">)</span>          <span class="c1"># (7)</span>
 <a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Gaussian Distribution"</span><span class="p">)</span>      <span class="c1"># (8)</span>
-<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                              <span class="c1"># (9)</span>
 </code></pre></div>
 <ol>
 <li>import the <code>pyplot</code> plotting interface from <code>matplotlib</code> library as <code>plt</code></li>
@@ -333,9 +334,10 @@
 <li>create an array from -5 to 5 in increments of 0.01; i.e. <span class="arithmatex">\(\frac{5-(-5)}{0.01}=1000\)</span> numbers in total. The number of items in the array <code>x</code> can be checked either using <code>len(x)</code> or using <code>np.size(x)</code></li>
 <li>generate a numpy array for <span class="arithmatex">\(y=\mathcal{N}(x)\)</span></li>
 <li>make the plot using two arrays x and y</li>
-<li>add label on the x axis</li>
+<li>add label on the x axis; the dollar signs means we use LaTex syntax for mathematical typesetting.</li>
 <li>add label on the y axis</li>
 <li>add plot title</li>
+<li><code>plt.show()</code> may or may not be needed depending on the backend used for plotting; e.g. not needed in notebook interfaces such as jupyter/google colab.</li>
 </ol>
 </div>
 <div class="tabbed-block">
@@ -348,10 +350,72 @@
 <p>We can also plot vector fields using <code>matplotlib</code>. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the <code>streamplot</code> function.</p>
 <div class="admonition example">
 <p class="admonition-title">Plotting a vector field</p>
+<p>First think about what you need to do to make such a field plot given that you have a function in matplotlib that directly generates a field plot if you provide it with vector field values in a grid. In 2D you will need to provide the <span class="arithmatex">\(x-\)</span> component, <span class="arithmatex">\(E_x\)</span> and the <span class="arithmatex">\(y-\)</span>component, <span class="arithmatex">\(E_y\)</span> of the electric field vector at each point. Recall:</p>
+<div class="arithmatex">\[ \vec{E}(x,y) = \frac{k q}{r^2} \hat{r}  = \frac{k q}{r^3} \left( x \hat{i} + y \hat{j}\right)\]</div>
+<p>is the electric field at a point <span class="arithmatex">\((x,y)\)</span> due to a charge <span class="arithmatex">\(q\)</span> at the origin, where <span class="arithmatex">\(r=\sqrt{x^2+y^2}\)</span>.</p>
+<p>Similarly, if the point charge is located at <span class="arithmatex">\((x_0, y_0)\)</span> rather than the origin:</p>
+<div class="arithmatex">\[ \vec{E}(x,y) = \frac{k q}{r^3} \left[ (x-x_0)\hat{i}+(y-y_0)\hat{j}\right] \]</div>
+<p>where, <span class="arithmatex">\(r = \sqrt{(x-x_0)^2 + (y-y_0)^2}\)</span>.</p>
+<p>Next, we need to understand the arguments of the <code>streamplot</code> function. In the documentation it is mentioned that at least four arguments are required:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>matplotlib.pyplot.streamplot(x, y, u, v)
+</code></pre></div>
+<p>where <code>x</code> and <code>y</code> can be 1D arrays that form the grid of the vector plot, but <code>u</code> and <code>v</code> must be 2D arrays (like a matrix) providing the <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> components of the vector field at each point. </p>
+<p>Let us first brainstorm one of the ways to obtain a vector lines plot using <code>streamplot</code> due to a unit positive charge at the origin. For that we will use a mix of programming and natural language without worrying about the syntax, but focusing on the algorithm; we may call this a pseudocode.</p>
+<div class="highlight"><span class="filename">pseudocode</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>q = 1 
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>k = 1
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>xlist, ylist = -5 to 5 with 0.1 stepsize
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a>U, V = 100x100 arrays (matrices) with all elements as zeros
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a>i, j = 0
+<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a>for x in xlist:
+<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>  for y in ylist:
+<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a>    rcube = sqrt(x*x+y*y)**3.0 
+<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a>    Ex = k * q * x / rcube
+<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a>    Ey = k * q * y / rcube
+<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a>    U[i,j] = Ex
+<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a>    V[i,j] = Ey
+<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>    j = j + 1
+<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a>    i = i + 1 
+<a href="#__codelineno-13-15" id="__codelineno-13-15" name="__codelineno-13-15"></a>streamplot(x, y, U, V)
+</code></pre></div>
 </div>
-<details class="question">
-<summary>Assignment: Implement a <code>stremplot</code> plot for the field due to two point charges separated by a distance.</summary>
-</details>
+<p>Now, let's convert the pseudocode to a python code.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><input id="__tabbed_8_2" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Python Code</label><label for="__tabbed_8_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">Electric field lines due to a charge at origin</span><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a>
+<a href="#__codelineno-14-4" id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
+<a href="#__codelineno-14-5" id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<a href="#__codelineno-14-6" id="__codelineno-14-6" name="__codelineno-14-6"></a>
+<a href="#__codelineno-14-7" id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="n">xlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-14-8" id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="n">ylist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-14-9" id="__codelineno-14-9" name="__codelineno-14-9"></a>
+<a href="#__codelineno-14-10" id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="n">Ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ylist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">xlist</span><span class="p">)))</span>
+<a href="#__codelineno-14-11" id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="n">Ey</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ylist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">xlist</span><span class="p">)))</span>           
+<a href="#__codelineno-14-12" id="__codelineno-14-12" name="__codelineno-14-12"></a>
+<a href="#__codelineno-14-13" id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a href="#__codelineno-14-14" id="__codelineno-14-14" name="__codelineno-14-14"></a>
+<a href="#__codelineno-14-15" id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xlist</span><span class="p">:</span>
+<a href="#__codelineno-14-16" id="__codelineno-14-16" name="__codelineno-14-16"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<a href="#__codelineno-14-17" id="__codelineno-14-17" name="__codelineno-14-17"></a>    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ylist</span><span class="p">:</span>
+<a href="#__codelineno-14-18" id="__codelineno-14-18" name="__codelineno-14-18"></a>        <span class="n">rcubed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mf">3.0</span>
+<a href="#__codelineno-14-19" id="__codelineno-14-19" name="__codelineno-14-19"></a>        <span class="n">Ex</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">rcubed</span>
+<a href="#__codelineno-14-20" id="__codelineno-14-20" name="__codelineno-14-20"></a>        <span class="n">Ey</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="n">rcubed</span>
+<a href="#__codelineno-14-21" id="__codelineno-14-21" name="__codelineno-14-21"></a>        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+<a href="#__codelineno-14-22" id="__codelineno-14-22" name="__codelineno-14-22"></a>    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<a href="#__codelineno-14-23" id="__codelineno-14-23" name="__codelineno-14-23"></a>
+<a href="#__codelineno-14-24" id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">xlist</span><span class="p">,</span> <span class="n">ylist</span><span class="p">,</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"-&gt;"</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><img alt="streamplot_example1" src="../figures/Efield_single_charge_origin.svg"/></p>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Assignment: Implement a <code>streamplot</code> plot for the electric field lines due to two point charges separated by a distance; for example, one charge is at <span class="arithmatex">\((1,0)\)</span> and the other is at <span class="arithmatex">\((-1, 0)\)</span>.</p>
+</div>
 </article>
 </div>
 </div>
