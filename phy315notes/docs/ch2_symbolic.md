@@ -209,4 +209,41 @@ We can also plot vector fields using `matplotlib`. Let us plot the electric fiel
     streamplot(x, y, U, V)
     ```
 
-??? question "Assignment: Implement a `streamplot` plot for the field due to two point charges separated by a distance."
+Now, let's convert the pseudocode to a python code.
+
+=== "Python Code"
+    ``` py title="Electric field lines due to a charge at origin"
+    
+    import matplotlib.pyplot as plt
+    import numpy as np
+    
+    q = 1
+    k = 1
+    
+    xlist = np.arange(-5, 5, 0.5)
+    ylist = np.arange(-5, 5, 0.5)
+
+    Ex = np.empty((len(ylist), len(xlist)))
+    Ey = np.empty((len(ylist), len(xlist)))           
+    
+    i = 0
+
+    for x in xlist:
+        j = 0
+        for y in ylist:
+            rcubed = np.sqrt(x*x+y*y)**3.0
+            Ex[j, i] = x/rcubed
+            Ey[j, i] = y/rcubed
+            j = j + 1
+        i = i + 1
+
+    plt.streamplot(xlist, ylist, Ex, Ey, linewidth=1, density=2, arrowstyle="->")
+
+    ```
+
+=== "Output"
+
+    ![streamplot_example1](figures/Efield_single_charge_origin.svg)
+
+
+!!! question "Assignment: Implement a `streamplot` plot for the electric field lines due to two point charges separated by a distance; for example, one charge is at $(1,0)$ and the other is at $(-1, 0)$."
