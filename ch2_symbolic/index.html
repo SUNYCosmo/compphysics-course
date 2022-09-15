@@ -349,7 +349,7 @@
 </div>
 </div>
 </div>
-<p>We can also plot vector fields using <code>matplotlib</code>. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the <code>streamplot</code> function.</p>
+<p>We can also plot vector fields using <code>matplotlib</code>. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.streamplot.html"><code>streamplot</code></a> function.</p>
 <div class="admonition example">
 <p class="admonition-title">Plotting a vector field</p>
 <p>First think about what you need to do to make such a field plot given that you have a function in matplotlib that directly generates a field plot if you provide it with vector field values in a grid. In 2D you will need to provide the <span class="arithmatex">\(x-\)</span> component, <span class="arithmatex">\(E_x\)</span> and the <span class="arithmatex">\(y-\)</span>component, <span class="arithmatex">\(E_y\)</span> of the electric field vector at each point. Recall:</p>
@@ -363,22 +363,22 @@
 </code></pre></div>
 <p>where <code>x</code> and <code>y</code> can be 1D arrays that form the grid of the vector plot, but <code>u</code> and <code>v</code> must be 2D arrays (like a matrix) providing the <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> components of the vector field at each point. </p>
 <p>Let us first brainstorm one of the ways to obtain a vector lines plot using <code>streamplot</code> due to a unit positive charge at the origin. For that we will use a mix of programming and natural language without worrying about the syntax, but focusing on the algorithm; we may call this a pseudocode.</p>
-<div class="highlight"><span class="filename">pseudocode</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>q = 1 
+<p><div class="highlight"><span class="filename">pseudocode</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>q = 1 
 <a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>k = 1
 <a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>xlist, ylist = -5 to 5 with 0.1 stepsize
-<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a>U, V = 100x100 arrays (matrices) with all elements as zeros
-<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a>i, j = 0
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a>Ex, Ey = 100x100 arrays (matrices) with all elements as zeros
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a>i = 0
 <a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a>for x in xlist:
-<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>  for y in ylist:
-<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a>    rcube = sqrt(x*x+y*y)**3.0 
-<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a>    Ex = k * q * x / rcube
-<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a>    Ey = k * q * y / rcube
-<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a>    U[i,j] = Ex
-<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a>    V[i,j] = Ey
-<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>    j = j + 1
-<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a>    i = i + 1 
-<a href="#__codelineno-13-15" id="__codelineno-13-15" name="__codelineno-13-15"></a>streamplot(x, y, U, V)
+<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>    j = 0
+<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a>    for y in ylist:
+<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a>        rcubed = sqrt(x*x+y*y)**3.0 
+<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a>        Ex[j,i] = k * q * x / rcubed
+<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a>        Ey[j,i] = k * q * y / rcubed
+<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a>        j = j + 1
+<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>    i = i + 1 
+<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a>streamplot(x, y, Ex, Ey)
 </code></pre></div>
+We used <code>Ex[j,i]</code> rather than <code>Ex[i,j]</code> because streamplot requires that these matrices have "the number of rows and columns match the length of y and x, respectively."</p>
 </div>
 <p>Now, let's convert the pseudocode to a python code.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><input id="__tabbed_8_2" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Python Code</label><label for="__tabbed_8_2">Output</label></div>
@@ -402,13 +402,14 @@
 <a href="#__codelineno-14-16" id="__codelineno-14-16" name="__codelineno-14-16"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
 <a href="#__codelineno-14-17" id="__codelineno-14-17" name="__codelineno-14-17"></a>    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ylist</span><span class="p">:</span>
 <a href="#__codelineno-14-18" id="__codelineno-14-18" name="__codelineno-14-18"></a>        <span class="n">rcubed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mf">3.0</span>
-<a href="#__codelineno-14-19" id="__codelineno-14-19" name="__codelineno-14-19"></a>        <span class="n">Ex</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">rcubed</span>
-<a href="#__codelineno-14-20" id="__codelineno-14-20" name="__codelineno-14-20"></a>        <span class="n">Ey</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="n">rcubed</span>
+<a href="#__codelineno-14-19" id="__codelineno-14-19" name="__codelineno-14-19"></a>        <span class="n">Ex</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">rcubed</span>
+<a href="#__codelineno-14-20" id="__codelineno-14-20" name="__codelineno-14-20"></a>        <span class="n">Ey</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">rcubed</span>
 <a href="#__codelineno-14-21" id="__codelineno-14-21" name="__codelineno-14-21"></a>        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
 <a href="#__codelineno-14-22" id="__codelineno-14-22" name="__codelineno-14-22"></a>    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 <a href="#__codelineno-14-23" id="__codelineno-14-23" name="__codelineno-14-23"></a>
 <a href="#__codelineno-14-24" id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">xlist</span><span class="p">,</span> <span class="n">ylist</span><span class="p">,</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"-&gt;"</span><span class="p">)</span>
 </code></pre></div>
+<p>Notice that you can specify the <code>linewidth</code>, the <code>density</code> and the <code>arrowstyle</code> in the streamplot function as in the example above, but these are optional arguments.</p>
 </div>
 <div class="tabbed-block">
 <p><img alt="streamplot_example1" src="../figures/Efield_single_charge_origin.svg"/></p>
