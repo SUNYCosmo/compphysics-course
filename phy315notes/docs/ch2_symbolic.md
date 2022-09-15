@@ -165,7 +165,7 @@ The plot of the normal distribution $\mathcal{N}(x)$ can be made in `matplotlib`
         ![Gaussian distribution](figures/gaussian_matplotlib.svg){ align=left }
     </figure>
 
-We can also plot vector fields using `matplotlib`. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the `streamplot` function.
+We can also plot vector fields using `matplotlib`. Let us plot the electric field due to a couple of simple charge configurations. Here we will use the [`streamplot`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.streamplot.html) function.
 
 !!! example "Plotting a vector field"
 
@@ -195,19 +195,19 @@ We can also plot vector fields using `matplotlib`. Let us plot the electric fiel
     q = 1 
     k = 1
     xlist, ylist = -5 to 5 with 0.1 stepsize
-    U, V = 100x100 arrays (matrices) with all elements as zeros
-    i, j = 0
+    Ex, Ey = 100x100 arrays (matrices) with all elements as zeros
+    i = 0
     for x in xlist:
-      for y in ylist:
-        rcube = sqrt(x*x+y*y)**3.0 
-        Ex = k * q * x / rcube
-        Ey = k * q * y / rcube
-        U[i,j] = Ex
-        V[i,j] = Ey
-        j = j + 1
+        j = 0
+        for y in ylist:
+            rcubed = sqrt(x*x+y*y)**3.0 
+            Ex[j,i] = k * q * x / rcubed
+            Ey[j,i] = k * q * y / rcubed
+            j = j + 1
         i = i + 1 
-    streamplot(x, y, U, V)
+    streamplot(x, y, Ex, Ey)
     ```
+    We used `Ex[j,i]` rather than `Ex[i,j]` because streamplot requires that these matrices have "the number of rows and columns match the length of y and x, respectively."
 
 Now, let's convert the pseudocode to a python code.
 
@@ -232,14 +232,16 @@ Now, let's convert the pseudocode to a python code.
         j = 0
         for y in ylist:
             rcubed = np.sqrt(x*x+y*y)**3.0
-            Ex[j, i] = x/rcubed
-            Ey[j, i] = y/rcubed
+            Ex[j, i] = k*q*x/rcubed
+            Ey[j, i] = k*q*y/rcubed
             j = j + 1
         i = i + 1
 
     plt.streamplot(xlist, ylist, Ex, Ey, linewidth=1, density=2, arrowstyle="->")
 
     ```
+
+    Notice that you can specify the `linewidth`, the `density` and the `arrowstyle` in the streamplot function as in the example above, but these are optional arguments.
 
 === "Output"
 
