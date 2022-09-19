@@ -1,4 +1,4 @@
-# Numerical Methods for Differentiation and Integration
+# Numerical Methods for Differentiation
 
 First, let us look into some methods for calculating numerical derivatives.
 
@@ -74,25 +74,10 @@ We can estimate the error made when numerically calculating derivatives using th
     
     $$  \frac{f(x_0+h)-f(x_0-h)}{2h} = f'(x_0) + \frac{h^2 f'''(x_0)}{6} + \dots $$
 
----
+!!! question "Forward difference numerical derivative"
 
-## Numerical Integration
+    Work out a forward difference approach (i.e. use the slope of line made by $P_+$ and $P$) to taking numerical derivative and compare it with the central difference method discussed above in terms of accuracy.
 
-Numerical integrations are commonplace in scientific modeling and simulations. If several integrations have to be calculated, not only accuracy and precision but the speed at which those can be obtained becomes important. We will attempt to understand all three concepts (accuracy, precision and the speed of calculation) in the context of three methods of numerical integrations given below.
+!!! question "Sampled function"
 
-Working with one dimensional integrals, our goal will be to approximate the definite integral:
-
-$$ I(a, b) = \int_a^b f(x)\ dx. $$
-
-### Trapezoid rule
-
-In the trapezoid rule, the integral is approximated by adding the areas of many trapezoids.
-
-### Simpson's rule
-
-## Adaptive Integration
-
-## Examples and Exercises
-
-1. Work out a forward difference approach (i.e. use the slope of line made by $P_+$ and $P$) to taking numerical derivative and compare it with the central difference method discussed above in terms of accuracy.
-2. Suppose you have a sampled function i.e. the function values are known (let's say at a regular interval of $h$). Which one is a better approach -- central difference or forward difference for calculating numerical derivatives?
+    Suppose you have a sampled function i.e. the function values are known (let's say at a regular interval of $h$). Which one is a better approach -- central difference or forward difference for calculating numerical derivatives?
