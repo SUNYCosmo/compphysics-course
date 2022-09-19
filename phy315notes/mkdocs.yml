@@ -5,7 +5,7 @@ nav:
     - Home: index.md
     - Introduction: ch1_intro.md
     - Symbolic and Plotting Tools: ch2_symbolic.md
-    #- Numerical Methods: ch3_numeric.md
+    - Numerical Derivatives: ch3_numeric.md
     #- Curve Fitting and Optimization: ch4_fitting.md
     #- Fourier Transform: ch5_fouriertransform.md
     #- Monte Carlo Methods: ch6_montecarlo.md
@@ -49,3 +49,8 @@ extra_javascript:
     - https://polyfill.io/v3/polyfill.min.js?features=es6
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     - https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js
+
+extra:
+    analytics:
+        provider: google
+        property: G-FT6G3F5600
