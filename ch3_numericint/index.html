@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://sunycosmo.github.io/compphysics-course/ch4_fitting/">
+        <link rel="canonical" href="https://sunycosmo.github.io/compphysics-course/ch3_numericint/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
-        <title>Curve fitting and Optimization - PHY 315 Introduction to Computational Methods in Physics</title>
+        <title>Numerical Methods for Integration - PHY 315 Introduction to Computational Methods in Physics</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#curve-fitting-and-optimization" class="md-skip">
+        <a href="#numerical-methods-for-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Curve fitting and Optimization
+              Numerical Methods for Integration
             
           </span>
         </div>
@@ -276,22 +276,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#least-square-polynomial-fitting" class="md-nav__link">
-    Least square polynomial fitting
+  <a href="#trapezoid-rule" class="md-nav__link">
+    Trapezoid rule
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-optimization" class="md-nav__link">
-    Local Optimization
+  <a href="#simpsons-rule" class="md-nav__link">
+    Simpson's rule
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#global-optimization" class="md-nav__link">
-    Global Optimization
+  <a href="#adaptive-integration" class="md-nav__link">
+    Adaptive Integration
   </a>
   
 </li>
@@ -310,10 +310,14 @@
                 
 
 
-<h1 id="curve-fitting-and-optimization">Curve fitting and Optimization</h1>
-<h2 id="least-square-polynomial-fitting">Least square polynomial fitting</h2>
-<h2 id="local-optimization">Local Optimization</h2>
-<h2 id="global-optimization">Global Optimization</h2>
+<h1 id="numerical-methods-for-integration">Numerical Methods for Integration</h1>
+<p>Numerical integrations are commonplace in scientific modeling and simulations. If several integrations have to be calculated, not only accuracy and precision but the speed at which those can be obtained becomes important. We will attempt to understand all three concepts (accuracy, precision and the speed of calculation) in the context of three methods of numerical integrations given below.</p>
+<p>Working with one dimensional integrals, our goal will be to approximate the definite integral:</p>
+<div class="arithmatex">\[ I(a, b) = \int_a^b f(x)\ dx. \]</div>
+<h3 id="trapezoid-rule">Trapezoid rule</h3>
+<p>In the trapezoid rule, the integral is approximated by adding the areas of many trapezoids.</p>
+<h3 id="simpsons-rule">Simpson's rule</h3>
+<h2 id="adaptive-integration">Adaptive Integration</h2>
 
 
   
