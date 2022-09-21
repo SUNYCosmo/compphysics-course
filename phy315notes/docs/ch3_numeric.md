@@ -62,7 +62,9 @@ We can estimate the error made when numerically calculating derivatives using th
     
     $$\epsilon = \frac{|(0.01)^2 (\cos{0.1})|}{6} = 0.00001658 = 0.001658\% $$
     
-    which is close to the actual percent accuracy calculated earlier.
+    which is close to the actual percent accuracy calculated earlier. 
+
+    For functions in which $f'''(x_0)$ cannot be evaluated, the information that $\epsilon$ scales as $h^2$ is still very useful. 
 
 === "Proof using Taylor expansion"
 
@@ -74,6 +76,11 @@ We can estimate the error made when numerically calculating derivatives using th
     
     $$  \frac{f(x_0+h)-f(x_0-h)}{2h} = f'(x_0) + \frac{h^2 f'''(x_0)}{6} + \dots $$
 
+    which is sometimes written as:
+
+    $$ f'(x_0) \approx \frac{f(x_0+h)-f(x_0-h)}{2h} + \mathcal{O}(h^2) $$
+
+    where $\mathcal{O}(h^2)$ indicates that the leading order contribution error made by estimation is proportional to $h^2$.
 !!! question "Forward difference numerical derivative"
 
     Work out a forward difference approach (i.e. use the slope of line made by $P_+$ and $P$) to taking numerical derivative and compare it with the central difference method discussed above in terms of accuracy.
