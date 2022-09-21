@@ -276,13 +276,17 @@
 <div class="arithmatex">\[\epsilon = \frac{|h^2 f'''(x_0)|}{6}\]</div>
 <p>The expression shows that the approximation error <span class="arithmatex">\(\epsilon\)</span> decreases as <span class="arithmatex">\(h\)</span> decreases. For our example above with <span class="arithmatex">\(f(x)=\sin(x)\)</span>, <span class="arithmatex">\(x_0=0.3\)</span> and <span class="arithmatex">\(h=0.01\)</span>:</p>
 <div class="arithmatex">\[\epsilon = \frac{|(0.01)^2 (\cos{0.1})|}{6} = 0.00001658 = 0.001658\% \]</div>
-<p>which is close to the actual percent accuracy calculated earlier.</p>
+<p>which is close to the actual percent accuracy calculated earlier. </p>
+<p>For functions in which <span class="arithmatex">\(f'''(x_0)\)</span> cannot be evaluated, the information that <span class="arithmatex">\(\epsilon\)</span> scales as <span class="arithmatex">\(h^2\)</span> is still very useful. </p>
 </div>
 <div class="tabbed-block">
 <div class="arithmatex">\[ f(x_0+h) = f(x_0) + h f'(x_0)+ \frac{h^2 f''(x_0)}{2} + \frac{h^3 f'''(x_0)}{6} + \dots \]</div>
 <div class="arithmatex">\[ f(x_0-h) = f(x_0) - h f'(x_0)+ \frac{h^2 f''(x_0)}{2} - \frac{h^3 f'''(x_0)}{6} + \dots\]</div>
 <p>we obtain,</p>
 <div class="arithmatex">\[  \frac{f(x_0+h)-f(x_0-h)}{2h} = f'(x_0) + \frac{h^2 f'''(x_0)}{6} + \dots \]</div>
+<p>which is sometimes written as:</p>
+<div class="arithmatex">\[ f'(x_0) \approx \frac{f(x_0+h)-f(x_0-h)}{2h} + \mathcal{O}(h^2) \]</div>
+<p>where <span class="arithmatex">\(\mathcal{O}(h^2)\)</span> indicates that the leading order contribution error made by estimation is proportional to <span class="arithmatex">\(h^2\)</span>.</p>
 </div>
 </div>
 </input></input></div>
