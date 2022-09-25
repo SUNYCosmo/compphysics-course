@@ -88,3 +88,27 @@ We can estimate the error made when numerically calculating derivatives using th
 !!! question "Sampled function"
 
     Suppose you have a sampled function i.e. the function values are known (let's say at a regular interval of $h$). Which one is a better approach -- central difference or forward difference for calculating numerical derivatives?
+
+## A finite difference estimate of second derivative
+
+A straight-forward apporach to calculate the second derivative at a point, $f''(x_0)$ is to simply use the finite difference derivative (say central difference) on the first derivative:
+
+$$f''(x_0) \approx \frac{f'(x_0+h)-f'(x_0-h)}{2 h}$$
+
+However, as we can see in the above formula, each $f''(x_0)$ evaluation requires two evaluations of first derivatives, and if we use central difference method each derivative requires two more evaluations of the function $f(x)$. 
+
+Another approach is to make use of the Taylor expansions of $f(x_0+h)$ and $f(x_0-h)$ to obtain a finite difference estimate of the second derivative $f''(x_0)$ as follows:
+
+$$ f(x_0+h) = f(x_0) + h f'(x_0)+ \frac{h^2 f''(x_0)}{2} + \frac{h^3 f'''(x_0)}{6} + \dots $$
+    
+$$ f(x_0-h) = f(x_0) - h f'(x_0)+ \frac{h^2 f''(x_0)}{2} - \frac{h^3 f'''(x_0)}{6} + \dots$$
+
+Adding the above two equations:
+
+$$ f(x_0 +h) + f(x_0-h) = 2 f(x_0) + h^2 f''(x_0) + \frac{h^4 f^{(4)}(x_0)}{12} + \dots$$
+
+such that:
+
+$$ f''(x_0)\approx \frac{f(x_0+h)+f(x_0-h)-2 f(x_0)}{h^2} + \mathcal{O}(h^2) $$
+
+without having to calculate the first derivative.

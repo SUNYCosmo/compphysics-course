@@ -6,6 +6,7 @@ nav:
     - Introduction: ch1_intro.md
     - Symbolic and Plotting Tools: ch2_symbolic.md
     - Numerical Derivatives: ch3_numeric.md
+    - Numerical Integration: ch3_numericint.md
     #- Curve Fitting and Optimization: ch4_fitting.md
     #- Fourier Transform: ch5_fouriertransform.md
     #- Monte Carlo Methods: ch6_montecarlo.md
