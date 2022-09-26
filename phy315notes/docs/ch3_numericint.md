@@ -16,7 +16,22 @@ where the distance between the parallel sides of the $i$th trapezoid is $h = (b-
 
 $$ A_i = \frac{1}{2} h \left[f(a+(i-1)h) + f(a+i h)\right] $$
 
+Each area evaluation $A_i$ requires 2 function $f(x)$ evaluations; so, it appears as if the total cost of the integral estimate is $2N$ evaluations. However, it should be clear that some function evaluations are used twice as two adjacent trapezoids share a side. Therefore, it is better to write the formula in the following form:
+
+$$ \begin{align}I(a,b) &\approx \sum_{i=1}^N \frac{h}{2}\left[f(a+(i-1)h) + f(a+i h)\right] \\
+                       &=\frac{h}{2} \left[ f(a) + 2 f(a+h) + 2 f(a+2h) + \dots + f(b) \right]  \\
+                       &=\frac{h}{2}\left[f(a)+f(b)\right] + h \sum_{i=1}^{N-1} f(a+ih)
+\end{align}$$
+
 ### Estimation of Error
+
+The leading order error on is given by the *Euler-Maclaurin formula* for the trapezoidal rule:
+
+$$ \epsilon = \frac{1}{12} h^2 \left[ f'(a)-f'(b)\right].$$
+
+Proofs can be found in textbooks; for example see Chapter 5 of Computational Physics by mark Newman for a proof. 
+
+The use of the formula given above for the leading order error requires that we have the knowledge of the first derivative of the function. In the case that we have reliable estimates of $f'(a)$ and $f'(b)$, we can choose $N$ and therefore $h$ such that we get the desired leading order error $\epsilon$. 
 
 ## Adaptive Integration
 

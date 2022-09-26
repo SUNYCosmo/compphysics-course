@@ -111,4 +111,6 @@ such that:
 
 $$ f''(x_0)\approx \frac{f(x_0+h)+f(x_0-h)-2 f(x_0)}{h^2} + \mathcal{O}(h^2) $$
 
-without having to calculate the first derivative.
+without having to calculate the first derivative. This same formula is obtained if we estimate the second derivative as the following finite difference of first derivatives:
+
+$$ f''(x_0) \approx \frac{f'(x_0+h/2) - f'(x_0-h/2)}{h} $$
