@@ -76,3 +76,11 @@ $$ \begin{align} I_i &= h_i \left[ \frac{1}{2} f(a) + \frac{1}{2} f(b)+ \sum_{ev
                     &= \frac{1}{2} I_{i-1} + h_i \sum_{k\ odd} f(a+ k h_i) \end{align}$$
 
 That is in each step we only have to evaluate the new $N_i/2$ points and can reuse the previously evaluated points.
+
+!!! question "Implement a code for adaptive integration"
+
+    Use the formula derived above to implement a code that performs the following integration using adaptive integration method for trapezoidal rule with a pre-defined error $\delta$:
+
+    $$ I = 2 \int_{-1}^{1} \sqrt{1- x^2} $$
+
+    This integral should result in $\pi$ as it gives us the area of a unit circle. Check that you can get better (higher precision) estimates of $\pi$ by decreasing the pre-defined error.
