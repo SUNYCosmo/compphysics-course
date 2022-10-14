@@ -3,13 +3,14 @@ site_url: https://sunycosmo.github.io/compphysics-course
 
 nav:
     - Home: index.md
-    - Introduction: ch1_intro.md
-    - Symbolic and Plotting Tools: ch2_symbolic.md
-    - Numerical Derivatives: ch3_numeric.md
-    - Numerical Integration: ch3_numericint.md
+    - Introduction: ch_intro.md
+    - Symbolic and Plotting Tools: ch_symbolic.md
+    - Numerical Derivatives: ch_numeric.md
+    - Numerical Integration: ch_numericint.md
     #- Curve Fitting and Optimization: ch4_fitting.md
     #- Fourier Transform: ch5_fouriertransform.md
-    #- Monte Carlo Methods: ch6_montecarlo.md
+    - Monte Carlo Methods: ch_montecarlo.md
+    - Differential Equations: ch_diffequations.md
     #- Machine Learning Example: ch7_mltools.md
     #- Further References: references.md
 
