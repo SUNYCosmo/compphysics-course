@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sunycosmo.github.io/compphysics-course/ch3_numericint/" rel="canonical"/>
+<link href="https://sunycosmo.github.io/compphysics-course/ch_numericint/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.3.1, mkdocs-material-8.4.2" name="generator"/>
 <title>Numerical Integration - PHY 315 Introduction to Computational Methods in Physics</title>
@@ -106,17 +106,17 @@
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch1_intro/">
+<a class="md-nav__link" href="../ch_intro/">
         Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch2_symbolic/">
+<a class="md-nav__link" href="../ch_symbolic/">
         Symbolic and Plotting Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch3_numeric/">
+<a class="md-nav__link" href="../ch_numeric/">
         Numerical Derivatives
       </a>
 </li>
@@ -165,6 +165,16 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch_montecarlo/">
+        Monte Carlo Methods
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch_diffequations/">
+        Differential Equations
+      </a>
 </li>
 </ul>
 </nav>
@@ -257,13 +267,19 @@
                     &amp;= \frac{h_{i-1}}{2} \left[\frac{1}{2} f(a) + \frac{1}{2} f(b) + \sum_{k=1}^{N_{i-1}-1} f(a+k h_{i-1}) \right] + h_i \sum_{k\ odd} f(a+ k h_i) \\
                     &amp;= \frac{1}{2} I_{i-1} + h_i \sum_{k\ odd} f(a+ k h_i) \end{align}\]</div>
 <p>That is in each step we only have to evaluate the new <span class="arithmatex">\(N_i/2\)</span> points and can reuse the previously evaluated points.</p>
+<div class="admonition question">
+<p class="admonition-title">Implement a code for adaptive integration</p>
+<p>Use the formula derived above to implement a code that performs the following integration using adaptive integration method for trapezoidal rule with a pre-defined error <span class="arithmatex">\(\delta\)</span>:</p>
+<div class="arithmatex">\[ I = 2 \int_{-1}^{1} \sqrt{1- x^2} \]</div>
+<p>This integral should result in <span class="arithmatex">\(\pi\)</span> as it gives us the area of a unit circle. Check that you can get better (higher precision) estimates of <span class="arithmatex">\(\pi\)</span> by decreasing the pre-defined error.</p>
+</div>
 </article>
 </div>
 </div>
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Numerical Derivatives" class="md-footer__link md-footer__link--prev" href="../ch3_numeric/" rel="prev">
+<a aria-label="Previous: Numerical Derivatives" class="md-footer__link md-footer__link--prev" href="../ch_numeric/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -274,6 +290,19 @@
               </span>
               Numerical Derivatives
             </div>
+</div>
+</a>
+<a aria-label="Next: Monte Carlo Methods" class="md-footer__link md-footer__link--next" href="../ch_montecarlo/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Monte Carlo Methods
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
 </div>
 </a>
 </nav>

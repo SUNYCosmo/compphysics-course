@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://sunycosmo.github.io/compphysics-course/ch6_montecarlo/">
+        <link rel="canonical" href="https://sunycosmo.github.io/compphysics-course/ch_fitting/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
-        <title>Monte Carlo Methods - PHY 315 Introduction to Computational Methods in Physics</title>
+        <title>Curve fitting and Optimization - PHY 315 Introduction to Computational Methods in Physics</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#monte-carlo-methods" class="md-skip">
+        <a href="#curve-fitting-and-optimization" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Monte Carlo Methods
+              Curve fitting and Optimization
             
           </span>
         </div>
@@ -212,7 +212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch1_intro/" class="md-nav__link">
+      <a href="../ch_intro/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -227,7 +227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch2_symbolic/" class="md-nav__link">
+      <a href="../ch_symbolic/" class="md-nav__link">
         Symbolic and Plotting Tools
       </a>
     </li>
@@ -242,7 +242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch3_numeric/" class="md-nav__link">
+      <a href="../ch_numeric/" class="md-nav__link">
         Numerical Derivatives
       </a>
     </li>
@@ -257,8 +257,38 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch3_numericint/" class="md-nav__link">
+      <a href="../ch_numericint/" class="md-nav__link">
         Numerical Integration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch_montecarlo/" class="md-nav__link">
+        Monte Carlo Methods
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch_diffequations/" class="md-nav__link">
+        Differential Equations
       </a>
     </li>
   
@@ -291,42 +321,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#random-numbers" class="md-nav__link">
-    Random numbers
-  </a>
-  
-    <nav class="md-nav" aria-label="Random numbers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#estimating-area-using-random-numbers" class="md-nav__link">
-    Estimating area using random numbers
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#monte-carlo-integration" class="md-nav__link">
-    Monte Carlo Integration
+  <a href="#least-square-polynomial-fitting" class="md-nav__link">
+    Least square polynomial fitting
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#markov-chain-monte-carlo-mcmc" class="md-nav__link">
-    Markov Chain Monte Carlo (MCMC)
+  <a href="#local-optimization" class="md-nav__link">
+    Local Optimization
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#global-optimization" class="md-nav__link">
+    Global Optimization
   </a>
   
 </li>
@@ -345,120 +355,10 @@
                 
 
 
-<h1 id="monte-carlo-methods">Monte Carlo Methods</h1>
-<h2 id="random-numbers">Random numbers</h2>
-<p>Consider the output of the following code:
-<div class="highlight"><span class="filename">random module</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">random</span>            
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>        
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
-</code></pre></div></p>
-<p>The output will be two numbers printed on the screen. The <a href="https://docs.python.org/3/library/random.html"><code>random.random()</code></a> command gives you a random number in the range <code>[0.0, 1.0)</code>. The likelihood of getting a particular value between <code>0</code> and <code>1</code> is the same. In statistical language, such a likelihood/probability is called a uniform distribution. If you want to get a random number in a different range, say <code>[a, b]</code>, you can either use the result of <code class="highlight"><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span></code> and rescale it appropriately, or directly use the function <code class="highlight"><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code>.</p>
-<p><strong>Use of <code class="highlight"><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span></code></strong>: If you use the same <code>seed</code> number (argument) in calling <code class="highlight"><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></code> before calling <code class="highlight"><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span></code>, the output is identical for the same <code>seed</code>. Because the returned random numbers depend on the <code>seed</code>, the number generator used by the <code>random</code> module is called a <em>pseudo-</em>random number generator. Such a generator is useful if you have to reproduce results (e.g. simulation) at a later time. If you do not provide an argument to <code>random.seed</code> or set <code>random.seed(None)</code>, the current system time is used as a proxy to a random seed and you will get different results each time you call <code>random.random()</code>.</p>
-<h3 id="estimating-area-using-random-numbers">Estimating area using random numbers</h3>
-<p>We can make use of random numbers to estimate areas. Suppose we want to estimate the area of the unit circle. </p>
-<details class="note">
-<summary>Area of a unit circle</summary>
-<div class="arithmatex">\[ A = \pi r ^2 = \pi (1)^2 = \pi \]</div>
-</details>
-<p>In this case, we know the answer is <span class="arithmatex">\(\pi\)</span>. Therefore, we can frame this exercise as a method to estimate the numerical value of <span class="arithmatex">\(\pi\)</span> as well.</p>
-<p>Consider a unit circle embedded in a square. Now, in each step, we will generate two random numbers <span class="arithmatex">\((x, y)\)</span> inside the embedding square, and check whether this randomly generated point lies inside of the unit circle or outside.</p>
-<p>Then an estimate of the area of the unit circle can be made:</p>
-<div class="arithmatex">\[ A = \left( \frac{\rm points\ inside\ the\ circle}{\rm total\ points} \right) \times {\rm area\ of\ embedding\ square}\]</div>
-<table>
-<tr>
-<th>
-<canvas id="canvas1" width="300" height="300"</canvas>
-</th>
-<th>
-<br><br><br>
-<input type="range" id="NP", min="100" max="20000" step="100" value="1000" onmouseup="calcpi()">
-<p>Total Points: <label id="label2">0</label></p>
-
-<p>Points Inside: <label id="label1">0</label>  </p>
-
-<p>Area Estimate: <label id="Aest"></label>  </p>
-<hr>
-Refresh the page to estimate using a new set of random points.
-</th>
-</tr>
-</table>
-<script>
-    var canvas = document.getElementById('canvas1')
-    var NN = document.getElementById('NP')
-
-    if (canvas.getContext) {
-            var ctx = canvas.getContext('2d');
-    }
-
-    function randomPoint() {
-
-        x = Math.random()*200+50;
-        y = Math.random()*200+50;
-
-        if ((x-150)*(x-150)+(y-150)*(y-150)<=10000) {
-            pts = pts + 1;
-            ctx.fillStyle="green";
-        } else {
-            ctx.fillStyle="blue";
-        }
-
-        total = total + 1;  
-
-        ctx.fillRect(x, y, 1, 1);
-        document.getElementById('label1').innerHTML = pts;
-        document.getElementById('label2').innerHTML = total;
-
-        Area = 4*pts/total
-        document.getElementById('Aest').innerHTML = Area;
-
-    }
-
-    function calcpi() {
-        ctx.clearRect(0, 0, 300, 300);
-
-        ctx.beginPath();
-        ctx.strokeStyle="blue";
-        ctx.rect(50, 50, 200, 200);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.strokeStyle="red";
-        ctx.arc(150, 150, 100, 2*Math.PI, false);
-        ctx.stroke();
-
-        pts = 0;
-        total = 0;
-
-        for (let i = 0; i < NN.value; i++) {
-        randomPoint();   ctx.stroke();                  
-        }
-    }
-
-    calcpi();
-</script>
-
-<div class="admonition note">
-<p class="admonition-title">Python code to estimate <span class="arithmatex">\(\pi\)</span></p>
-<div class="highlight"><span class="filename">Estimate area of a unit circle</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">pi_estimate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">pts_in</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total</span><span class="p">):</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mf">2.0</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">):</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            <span class="n">pts_in</span> <span class="o">=</span> <span class="n">pts_in</span> <span class="o">+</span> <span class="mf">1.0</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">return</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">pts_in</span><span class="o">/</span><span class="n">total</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span> <span class="p">(</span><span class="n">pi_estimate</span><span class="p">())</span>
-</code></pre></div>
-<p>Increasing the number of points used through the <code>total</code> argument in the <code>pi_estimate</code> function improves the estimate. If <span class="arithmatex">\(N\)</span> is the number of points used, the standard error scales as <span class="arithmatex">\(1/\sqrt{N}\)</span>.</p>
-</div>
-<h2 id="monte-carlo-integration">Monte Carlo Integration</h2>
-<h2 id="markov-chain-monte-carlo-mcmc">Markov Chain Monte Carlo (MCMC)</h2>
-<h2 id="examples">Examples</h2>
+<h1 id="curve-fitting-and-optimization">Curve fitting and Optimization</h1>
+<h2 id="least-square-polynomial-fitting">Least square polynomial fitting</h2>
+<h2 id="local-optimization">Local Optimization</h2>
+<h2 id="global-optimization">Global Optimization</h2>
 
 
   
