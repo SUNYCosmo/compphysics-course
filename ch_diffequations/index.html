@@ -150,6 +150,11 @@
     Euler's method
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#second-order-runge-kutta-method">
+    Second-order Runge-Kutta method
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -172,6 +177,11 @@
     Euler's method
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#second-order-runge-kutta-method">
+    Second-order Runge-Kutta method
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -180,7 +190,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="differential-equations"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.</span> Differential Equations</h1>
-<p>In physics, we encounter many differential equations -- Newton's second law in introductory mechanics and Schrodinger's equation in modern physics being some examples. Only a small subset of differential equations can be solved analytically and therefore numerical methods are important in solving many problems that require one to solve differential equations which do not have known alaytic solutions.</p>
+<p>In physics, we encounter many differential equations -- Newton's second law in introductory mechanics and Schrodinger's equation in modern physics being some examples. Only a small subset of differential equations can be solved analytically and therefore numerical methods are important in solving many problems that require one to solve differential equations which do not have known anaytic solutions.</p>
 <h2 id="eulers-method"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.1</span> Euler's method</h2>
 <p>A simple method to estimate a numerical solution <span class="arithmatex">\(x(t)\)</span> to the differential equation </p>
 <div class="arithmatex">\[\frac{dx}{dt} = f(x,t)\]</div>
@@ -193,12 +203,27 @@
 <div class="arithmatex">\[ g(y) = g(y_0) + g'(y_0) (y-y_0) + \frac{g''(y_0)}{2!} (y-y_0)^2 + \dots\]</div>
 </div>
 <p>For small <span class="arithmatex">\(h\)</span>, we may estimate <span class="arithmatex">\(x(t+h)\)</span> given that we know <span class="arithmatex">\(x(t)\)</span> by truncating the above Taylor series as:</p>
+<div class="admonition note">
+<p class="admonition-title">Euler's method</p>
 <div class="arithmatex">\[ x(t+h) \approx x(t) + h f(x,t) \]</div>
+</div>
 <p>The approximate error we make is <span class="arithmatex">\(\frac{1}{2}h^2 \frac{d^2x}{dt^2}\)</span>, which is the largest term that we ignore from the Taylor series expansion of <span class="arithmatex">\(x(t+h)\)</span>. The error per step is therefore <span class="arithmatex">\(\mathcal{O}(h^2)\)</span>. If we were to use Euler's method to find a numerical solution for <span class="arithmatex">\(x(t)\)</span> from <span class="arithmatex">\(t=a\)</span> to <span class="arithmatex">\(t=b\)</span> in steps of <span class="arithmatex">\(h\)</span>, then we can define and estimate the cumulative error as:</p>
 <div class="arithmatex">\[ \sum_{k=0}^{N-1} \frac{1}{2} h^2 \left( \frac{d^2 x}{dt^2} \right)_{t=a+kh} = \frac{h}{2} \sum_{k=0}^{N-1} h \left( \frac{df}{dt}\right)_{t=a+k h} \]</div>
 <p>The sum can be approximated by an integral from small <span class="arithmatex">\(h\)</span> to obtain </p>
 <div class="arithmatex">\[ \frac{1}{2} h \int_a^b \frac{df}{dt} dt = \frac{h}{2} \left[ f(x(b), b) - f(x(a), a) \right] \]</div>
 <p>That is the cumulative error is <span class="arithmatex">\(O(h)\)</span> and not <span class="arithmatex">\(O(h^2)\)</span>.</p>
+<h2 id="second-order-runge-kutta-method"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2</span> Second-order Runge-Kutta method</h2>
+<p>The second-order Runge-Kutta method can be derived by performing Taylor expansion of <span class="arithmatex">\(x(t+h)\)</span> and <span class="arithmatex">\(x(t)\)</span> around <span class="arithmatex">\(t+h/2\)</span>, to obtain</p>
+<div class="arithmatex">\[ x(t+h) = x(t) + h\left( \frac{dx}{dt} \right)_{t+h/2} + \mathcal{O}(h^3)\]</div>
+<p>But</p>
+<div class="arithmatex">\[ \left(\frac{dx}{dt} \right)_{t+h/2} = f(x(t+h/2), h/2) \]</div>
+<p>As such, we can write the second-order Runge-Kutta method as:</p>
+<div class="admonition note">
+<p class="admonition-title">Second-order Runge Kutta method</p>
+<div class="arithmatex">\[ x(t+h) = x(t) + k_2 \]</div>
+<p>where, <span class="arithmatex">\(k_2 = h f(x+\frac{k_1}{2}, t+h/2)\)</span> and <span class="arithmatex">\(k_1 = h f(x,t)\)</span></p>
+</div>
+<p>In writing a code you will have to evaluate <span class="arithmatex">\(k_1\)</span> first, followed by <span class="arithmatex">\(k_2\)</span>, and then find <span class="arithmatex">\(x(t+h)\)</span> given the knowledge of <span class="arithmatex">\(x(t)\)</span> and the function <span class="arithmatex">\(f(x,t)\)</span>.</p>
 </article>
 </div>
 </div>
