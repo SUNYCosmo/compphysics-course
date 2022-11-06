@@ -55,3 +55,14 @@ As such, we can write the second-order Runge-Kutta method as:
     where, $k_2 = h f(x+\frac{k_1}{2}, t+h/2)$ and $k_1 = h f(x,t)$
 
 In writing a code you will have to evaluate $k_1$ first, followed by $k_2$, and then find $x(t+h)$ given the knowledge of $x(t)$ and the function $f(x,t)$.
+
+## Fourth-order Runge-Kutta method
+Following the same method and approach, one can derive third-order, fourth-order and higher-order Runge-Kutta methods. The fourth-order Runge-Kutta method is a popular numerical method of solving differential equations numerically:
+
+!!! note "Fourth-order Runge-Kutta method"
+    
+    $$ \begin{align} k_1 &= h f(x,t) \\ k_2 &= hf\left(x+\frac{1}{2}k_1), t + \frac{1}{2}h\right) \\
+        k_3 &= h f \left(x + \frac{1}{2}k_2, t + \frac{1}{2} h \right) \\
+        k_4 &= h f\left(x+k_3, t+h\right) \\ 
+        x(t+h) &= x(t) + \frac{1}{6}\left(k_1+2k_2+2k_3+k_4\right)\end{align}
+    $$
