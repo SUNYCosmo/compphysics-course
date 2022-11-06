@@ -155,6 +155,11 @@
     Second-order Runge-Kutta method
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fourth-order-runge-kutta-method">
+    Fourth-order Runge-Kutta method
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -180,6 +185,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#second-order-runge-kutta-method">
     Second-order Runge-Kutta method
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fourth-order-runge-kutta-method">
+    Fourth-order Runge-Kutta method
   </a>
 </li>
 </ul>
@@ -224,6 +234,16 @@
 <p>where, <span class="arithmatex">\(k_2 = h f(x+\frac{k_1}{2}, t+h/2)\)</span> and <span class="arithmatex">\(k_1 = h f(x,t)\)</span></p>
 </div>
 <p>In writing a code you will have to evaluate <span class="arithmatex">\(k_1\)</span> first, followed by <span class="arithmatex">\(k_2\)</span>, and then find <span class="arithmatex">\(x(t+h)\)</span> given the knowledge of <span class="arithmatex">\(x(t)\)</span> and the function <span class="arithmatex">\(f(x,t)\)</span>.</p>
+<h2 id="fourth-order-runge-kutta-method"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.3</span> Fourth-order Runge-Kutta method</h2>
+<p>Following the same method and approach, one can derive third-order, fourth-order and higher-order Runge-Kutta methods. The fourth-order Runge-Kutta method is a popular numerical method of solving differential equations numerically:</p>
+<div class="admonition note">
+<p class="admonition-title">Fourth-order Runge-Kutta method</p>
+<div class="arithmatex">\[ \begin{align} k_1 &amp;= h f(x,t) \\ k_2 &amp;= hf\left(x+\frac{1}{2}k_1), t + \frac{1}{2}h\right) \\
+    k_3 &amp;= h f \left(x + \frac{1}{2}k_2, t + \frac{1}{2} h \right) \\
+    k_4 &amp;= h f\left(x+k_3, t+h\right) \\ 
+    x(t+h) &amp;= x(t) + \frac{1}{6}\left(k_1+2k_2+2k_3+k_4\right)\end{align}
+\]</div>
+</div>
 </article>
 </div>
 </div>
