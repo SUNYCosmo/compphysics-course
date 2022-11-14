@@ -8,9 +8,9 @@ nav:
     - Numerical Derivatives: ch_numeric.md
     - Numerical Integration: ch_numericint.md
     #- Curve Fitting and Optimization: ch4_fitting.md
-    #- Fourier Transform: ch5_fouriertransform.md
     - Monte Carlo Methods: ch_montecarlo.md
     - Differential Equations: ch_diffequations.md
+    - Fourier Transform: ch_fouriertransform.md
     #- Machine Learning Example: ch7_mltools.md
     #- Further References: references.md
 

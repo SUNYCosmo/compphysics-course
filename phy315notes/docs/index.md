@@ -10,8 +10,9 @@ An introduction to computational and numerical methods in physics. Includes an i
 4. [Numerical Methods for Integration](ch_numericint.md)
 5. [Random numbers and Monte-carlo integration](ch_montecarlo.md)
 6. [Differential Equations](ch_diffequations.md)
+7. [Fourier Transform](ch_fouriertransform.md)
+
 <!--
 5. [Curve Fitting and Optimization](ch_fitting.md)  
-6. [Fourier Transform](ch_fouriertransform.md)
 8. [Machine Learning Tools](ch_mltools.md)  
 -->
