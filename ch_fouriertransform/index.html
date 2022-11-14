@@ -199,12 +199,16 @@
 <p>Any 1D function <span class="arithmatex">\(f(x)\)</span> in the interval <span class="arithmatex">\(0\leq x &lt; L\)</span> can be written down as a series of sines and cosines:</p>
 <div class="arithmatex">\[ f(x) = \sum_{i=0}^\infty a_j \cos\left(\frac{2 \pi j x}{L}\right) + \sum_{j=0}^\infty b_j \sin\left( \frac{2 \pi j x}{L} \right) \]</div>
 <p>given that all the coefficients <span class="arithmatex">\(a_i\)</span>'s and <span class="arithmatex">\(b_j\)</span>'s are known. Using the identities that relate the sines and cosines to exponential, it is possible to write the series using complex exponential:</p>
-<div class="arithmatex">\[ f(x) = \sum_{i=0}^\infty c_j \exp \left( i \left[\frac{2 \pi j x}{L}\right] \right) \]</div>
-<p>The coefficients can be obtained by using the orthogonality of the complex exponential </p>
-<div class="arithmatex">\[\int_0^L e^{i j x} e^{-i j' x} dx = L \delta(j-j')\]</div>
+<div class="arithmatex">\[ f(x) = \sum_{i=-\infty}^\infty c_j \exp \left( i \left[\frac{2 \pi j x}{L}\right] \right) \]</div>
+<p>where the sum limit now goes from <span class="arithmatex">\(-\infty\)</span> to <span class="arithmatex">\(\infty\)</span>. The coefficients <span class="arithmatex">\(c_j\)</span>s can be obtained by using the orthogonality of the complex exponential </p>
+<div class="arithmatex">\[\int_0^L e^{i \left[\frac{2 \pi j}{L}\right] x} e^{-i \left[\frac{2 \pi j'}{L}\right] x} dx = L \delta(j-j')\]</div>
 <div class="arithmatex">\[ c_j = \frac{1}{L} \int_{0}^L f(x) \exp \left( - i \left[ \frac{2 \pi j x}{L} \right] \right) \]</div>
 <p>Therefore, we can represent the function <span class="arithmatex">\(f(x)\)</span> as the coefficients of Fourier series <span class="arithmatex">\(\{ c_j \}\)</span>. Given one representation we can find the other and vice versa.</p>
 <h2 id="discrete-fourier-transform"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2</span> Discrete fourier transform</h2>
+<p>In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform using complex exponentials can be derived making use of the geometric series:</p>
+<div class="arithmatex">\[ \sum_{j=0}^{N-1} a^j = \frac{1-a^N}{1-a} \]</div>
+<p>If <span class="arithmatex">\(a= e^{i(2\pi m)/N}\)</span> (here we are using <span class="arithmatex">\(m\)</span> instead of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(N\)</span> instead of <span class="arithmatex">\(L\)</span> as variables in the discrete case):</p>
+<div class="arithmatex">\[ \sum_{j=0}^{N-1} e^{i(2 \pi j m)/N} = \frac{1-e^{i(2\pi m)}}{1-e^{i(2\pi m)/N}} = \begin{cases} N {\qquad \rm if\ m\ is\ zero} \\ 0 \qquad \ else \end{cases} \]</div>
 </article>
 </div>
 </div>
