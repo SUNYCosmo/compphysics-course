@@ -20,10 +20,14 @@ Therefore, we can represent the function $f(x)$ as the coefficients of Fourier s
 
 ## Discrete fourier transform
 
-In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform using complex exponentials can be derived making use of the geometric series:
+In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform of a set of n-data points $\{a_0, a_1, a_2, \dots, a_{n-1}\}$ is defined as:
 
-$$ \sum_{j=0}^{N-1} a^j = \frac{1-a^N}{1-a} $$
+$$ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
 
-If $a= e^{i(2\pi m)/N}$ (here we are using $m$ instead of $x$ and $N$ instead of $L$ as variables in the discrete case):
+Here $A_k$ are the fourier coefficients (n of them). From these fourier coefficients, we can get back the initial data points $a_m$s through an inverse discrete fourier transform:
 
-$$ \sum_{j=0}^{N-1} e^{i(2 \pi j m)/N} = \frac{1-e^{i(2\pi m)}}{1-e^{i(2\pi m)/N}} = \begin{cases} N {\qquad \rm if\ m\ is\ zero} \\ 0 \qquad \ else \end{cases} $$
+$$ a_k = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
+
+It is possible to implement a direct version of this formula in python as python supports complex numbers. For instance the complex number $i$ is implemented in python using ```1j```.
+
+However, as $n$ increases these direct implementations of DFT will take a long time to evaluate as the number of operations go as $\mathcal{O}(n^2)$. As such, a more clever algrithm called the fast fourier transform are implemented in software packages that calculate discrete fourier transform. For example, `numpy` has `numpy.fft` and `numpy.rfft` that are useful to calculate fourier transforms.
