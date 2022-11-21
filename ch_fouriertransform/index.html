@@ -205,10 +205,12 @@
 <div class="arithmatex">\[ c_j = \frac{1}{L} \int_{0}^L f(x) \exp \left( - i \left[ \frac{2 \pi j x}{L} \right] \right) \]</div>
 <p>Therefore, we can represent the function <span class="arithmatex">\(f(x)\)</span> as the coefficients of Fourier series <span class="arithmatex">\(\{ c_j \}\)</span>. Given one representation we can find the other and vice versa.</p>
 <h2 id="discrete-fourier-transform"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2</span> Discrete fourier transform</h2>
-<p>In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform using complex exponentials can be derived making use of the geometric series:</p>
-<div class="arithmatex">\[ \sum_{j=0}^{N-1} a^j = \frac{1-a^N}{1-a} \]</div>
-<p>If <span class="arithmatex">\(a= e^{i(2\pi m)/N}\)</span> (here we are using <span class="arithmatex">\(m\)</span> instead of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(N\)</span> instead of <span class="arithmatex">\(L\)</span> as variables in the discrete case):</p>
-<div class="arithmatex">\[ \sum_{j=0}^{N-1} e^{i(2 \pi j m)/N} = \frac{1-e^{i(2\pi m)}}{1-e^{i(2\pi m)/N}} = \begin{cases} N {\qquad \rm if\ m\ is\ zero} \\ 0 \qquad \ else \end{cases} \]</div>
+<p>In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform of a set of n-data points <span class="arithmatex">\(\{a_0, a_1, a_2, \dots, a_{n-1}\}\)</span> is defined as:</p>
+<div class="arithmatex">\[ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \right] \right\}} \]</div>
+<p>Here <span class="arithmatex">\(A_k\)</span> are the fourier coefficients (n of them). From these fourier coefficients, we can get back the initial data points <span class="arithmatex">\(a_m\)</span>s through an inverse discrete fourier transform:</p>
+<div class="arithmatex">\[ a_k = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} \]</div>
+<p>It is possible to implement a direct version of this formula in python as python supports complex numbers. For instance the complex number <span class="arithmatex">\(i\)</span> is implemented in python using <code>1j</code>.</p>
+<p>However, as <span class="arithmatex">\(n\)</span> increases these direct implementations of DFT will take a long time to evaluate as the number of operations go as <span class="arithmatex">\(\mathcal{O}(n^2)\)</span>. As such, a more clever algrithm called the fast fourier transform are implemented in software packages that calculate discrete fourier transform. For example, <code>numpy</code> has <code>numpy.fft</code> and <code>numpy.rfft</code> that are useful to calculate fourier transforms.</p>
 </article>
 </div>
 </div>
