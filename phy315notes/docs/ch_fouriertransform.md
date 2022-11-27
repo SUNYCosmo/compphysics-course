@@ -26,8 +26,31 @@ $$ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \righ
 
 Here $A_k$ are the fourier coefficients (n of them). From these fourier coefficients, we can get back the initial data points $a_m$s through an inverse discrete fourier transform:
 
-$$ a_k = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
+$$ a_m = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
 
 It is possible to implement a direct version of this formula in python as python supports complex numbers. For instance the complex number $i$ is implemented in python using ```1j```.
 
-However, as $n$ increases these direct implementations of DFT will take a long time to evaluate as the number of operations go as $\mathcal{O}(n^2)$. As such, a more clever algrithm called the fast fourier transform are implemented in software packages that calculate discrete fourier transform. For example, `numpy` has `numpy.fft` and `numpy.rfft` that are useful to calculate fourier transforms.
+However, as $n$ increases these direct implementations of DFT will take a long time to evaluate as the number of operations go as $\mathcal{O}(n^2)$. As such, a more clever algrithm called the fast fourier transform are implemented in software packages that calculate discrete fourier transform. For example, `numpy` has `numpy.fft.fft` and `numpy.fft.rfft` functions that are useful to calculate fourier transforms.
+
+!!! question "Time series sunspot data"
+
+    Implement your own discrete fourier transform `dft` function and use it to fourier transform the [time series sunspot data](http://www-personal.umich.edu/~mejn/cp/data/sunspots.txt).
+
+    To understand the result, notice that if our data is a time series as is the sunspot data (number of sunspots each month), then the fourier transform gives us a measure of the frequency.
+
+    First, notice that when $m=0$, the fourier transform is just the average of the data points:
+
+    $$ a_0 = \frac{1}{n} \sum_{k=0}^{n-1} A_k $$
+
+    We can think of this as a wave with zero frequency. Second, when $m=1$, we start to get the coefficient of the Fourier wave decomposition with frequency $f_1 = \frac{1}{n \Delta t}$, and the frequency increases with increasing $m$. In general: 
+
+    $$ f_m = \frac{m}{n \Delta t} $$
+
+    In the sunspot data $\Delta t = 1\ {\rm month}$.
+
+    By plotting the power spectrum $p_m = |a_m|^2 = a_m^* a_m$ of the Fourier coefficients, and finding out the $m$ at which it is maximum, it is possible to find the periodicity of the sunspot data using $T= 1/f$.
+
+    
+
+    
+
