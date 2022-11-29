@@ -22,11 +22,15 @@ Therefore, we can represent the function $f(x)$ as the coefficients of Fourier s
 
 In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform of a set of n-data points $\{a_0, a_1, a_2, \dots, a_{n-1}\}$ is defined as:
 
-$$ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
+!!! note "Discrete Fourier Transform"
+
+    $$ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
 
 Here $A_k$ are the fourier coefficients (n of them). From these fourier coefficients, we can get back the initial data points $a_m$s through an inverse discrete fourier transform:
 
-$$ a_m = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
+!!! note "Inverse Discrete Fourier Transform"
+
+    $$ a_m = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} $$
 
 It is possible to implement a direct version of this formula in python as python supports complex numbers. For instance the complex number $i$ is implemented in python using ```1j```.
 
@@ -38,17 +42,17 @@ However, as $n$ increases these direct implementations of DFT will take a long t
 
     To understand the result, notice that if our data is a time series as is the sunspot data (number of sunspots each month), then the fourier transform gives us a measure of the frequency.
 
-    First, notice that when $m=0$, the fourier transform is just the average of the data points:
+    First, notice that when $k=0$, the fourier transform $A_0$ is just the average of the data points:
 
-    $$ a_0 = \frac{1}{n} \sum_{k=0}^{n-1} A_k $$
+    $$ A_0 = \frac{1}{n} \sum_{m=0}^{n-1} a_m $$
 
-    We can think of this as a wave with zero frequency. Second, when $m=1$, we start to get the coefficient of the Fourier wave decomposition with frequency $f_1 = \frac{1}{n \Delta t}$, and the frequency increases with increasing $m$. In general: 
+    We can think of this as a wave with zero frequency. Second, when $k=1$, we start to get the coefficient of the Fourier wave decomposition with frequency $f_1 = \frac{1}{n \Delta t}$, and the frequency increases with increasing $k$. In general: 
 
-    $$ f_m = \frac{m}{n \Delta t} $$
+    $$ f_k = \frac{k}{n \Delta t} $$
 
     In the sunspot data $\Delta t = 1\ {\rm month}$.
 
-    By plotting the power spectrum $p_m = |a_m|^2 = a_m^* a_m$ of the Fourier coefficients, and finding out the $m$ at which it is maximum, it is possible to find the periodicity of the sunspot data using $T= 1/f$.
+    By plotting the power spectrum $p_k = |A_k|^2 = A_k^* A_k$ of the Fourier coefficients, and finding out the $k$ at which it is maximum, it is possible to find the periodicity of the sunspot data using $T= 1/f$.
 
     
 
