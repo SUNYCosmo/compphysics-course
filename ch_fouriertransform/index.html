@@ -206,21 +206,27 @@
 <p>Therefore, we can represent the function <span class="arithmatex">\(f(x)\)</span> as the coefficients of Fourier series <span class="arithmatex">\(\{ c_j \}\)</span>. Given one representation we can find the other and vice versa.</p>
 <h2 id="discrete-fourier-transform"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2</span> Discrete fourier transform</h2>
 <p>In many practical applications, fourier transforms of discretely sampled data points is useful. Discrete fourier transform of a set of n-data points <span class="arithmatex">\(\{a_0, a_1, a_2, \dots, a_{n-1}\}\)</span> is defined as:</p>
+<div class="admonition note">
+<p class="admonition-title">Discrete Fourier Transform</p>
 <div class="arithmatex">\[ A_k = \sum_{m=0}^{n-1} a_m \exp{ \left\{ - 2 \pi i \left[ \frac{m k}{n} \right] \right\}} \]</div>
+</div>
 <p>Here <span class="arithmatex">\(A_k\)</span> are the fourier coefficients (n of them). From these fourier coefficients, we can get back the initial data points <span class="arithmatex">\(a_m\)</span>s through an inverse discrete fourier transform:</p>
+<div class="admonition note">
+<p class="admonition-title">Inverse Discrete Fourier Transform</p>
 <div class="arithmatex">\[ a_m = \frac{1}{n} \sum_{k=0}^{n-1} A_k \exp{ \left\{ 2 \pi i \left[ \frac{m k}{n} \right] \right\}} \]</div>
+</div>
 <p>It is possible to implement a direct version of this formula in python as python supports complex numbers. For instance the complex number <span class="arithmatex">\(i\)</span> is implemented in python using <code>1j</code>.</p>
 <p>However, as <span class="arithmatex">\(n\)</span> increases these direct implementations of DFT will take a long time to evaluate as the number of operations go as <span class="arithmatex">\(\mathcal{O}(n^2)\)</span>. As such, a more clever algrithm called the fast fourier transform are implemented in software packages that calculate discrete fourier transform. For example, <code>numpy</code> has <code>numpy.fft.fft</code> and <code>numpy.fft.rfft</code> functions that are useful to calculate fourier transforms.</p>
 <div class="admonition question">
 <p class="admonition-title">Time series sunspot data</p>
 <p>Implement your own discrete fourier transform <code>dft</code> function and use it to fourier transform the <a href="http://www-personal.umich.edu/~mejn/cp/data/sunspots.txt">time series sunspot data</a>.</p>
 <p>To understand the result, notice that if our data is a time series as is the sunspot data (number of sunspots each month), then the fourier transform gives us a measure of the frequency.</p>
-<p>First, notice that when <span class="arithmatex">\(m=0\)</span>, the fourier transform is just the average of the data points:</p>
-<div class="arithmatex">\[ a_0 = \frac{1}{n} \sum_{k=0}^{n-1} A_k \]</div>
-<p>We can think of this as a wave with zero frequency. Second, when <span class="arithmatex">\(m=1\)</span>, we start to get the coefficient of the Fourier wave decomposition with frequency <span class="arithmatex">\(f_1 = \frac{1}{n \Delta t}\)</span>, and the frequency increases with increasing <span class="arithmatex">\(m\)</span>. In general: </p>
-<div class="arithmatex">\[ f_m = \frac{m}{n \Delta t} \]</div>
+<p>First, notice that when <span class="arithmatex">\(k=0\)</span>, the fourier transform <span class="arithmatex">\(A_0\)</span> is just the average of the data points:</p>
+<div class="arithmatex">\[ A_0 = \frac{1}{n} \sum_{m=0}^{n-1} a_m \]</div>
+<p>We can think of this as a wave with zero frequency. Second, when <span class="arithmatex">\(k=1\)</span>, we start to get the coefficient of the Fourier wave decomposition with frequency <span class="arithmatex">\(f_1 = \frac{1}{n \Delta t}\)</span>, and the frequency increases with increasing <span class="arithmatex">\(k\)</span>. In general: </p>
+<div class="arithmatex">\[ f_k = \frac{k}{n \Delta t} \]</div>
 <p>In the sunspot data <span class="arithmatex">\(\Delta t = 1\ {\rm month}\)</span>.</p>
-<p>By plotting the power spectrum <span class="arithmatex">\(p_m = |a_m|^2 = a_m^* a_m\)</span> of the Fourier coefficients, and finding out the <span class="arithmatex">\(m\)</span> at which it is maximum, it is possible to find the periodicity of the sunspot data using <span class="arithmatex">\(T= 1/f\)</span>.</p>
+<p>By plotting the power spectrum <span class="arithmatex">\(p_k = |A_k|^2 = A_k^* A_k\)</span> of the Fourier coefficients, and finding out the <span class="arithmatex">\(k\)</span> at which it is maximum, it is possible to find the periodicity of the sunspot data using <span class="arithmatex">\(T= 1/f\)</span>.</p>
 </div>
 </article>
 </div>
