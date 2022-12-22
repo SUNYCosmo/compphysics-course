@@ -84,3 +84,90 @@ That is in each step we only have to evaluate the new $N_i/2$ points and can reu
     $$ I = 2 \int_{-1}^{1} \sqrt{1- x^2} $$
 
     This integral should result in $\pi$ as it gives us the area of a unit circle. Check that you can get better (higher precision) estimates of $\pi$ by decreasing the pre-defined error.
+
+    === "Python code" 
+        ``` py
+        import numpy as np
+
+        a = -1
+        b = 1
+        N = 5
+
+        delta = 0.000001
+        eps = 2*delta
+        
+        def f(x):
+            return 2.0*np.sqrt(1-x*x)
+
+        h = (b-a)/N
+        I0 = h*(0.5*(f(a)+f(b))+np.sum(np.array([f(a+k*h) for k in range(1, N-1)])))
+
+        while (eps>delta):
+            N = N*2
+            h = h/2.0
+            I = 0.5*I0+h*np.sum(np.array([f(a+k*h) for k in range(1, N-1, 2)]))
+            eps = (I-I0)/3.0
+            I0 = I
+
+        print (I)
+        ```
+
+    === "Fortran code"
+        ``` f90
+        program adapint
+        implicit none
+    
+        integer :: N, k
+    
+        real :: a, b, delta, eps, h, I0, I
+    
+        real :: func
+        external func
+    
+        real, allocatable :: array1(:)
+    
+        a = -1
+        b = 1
+        N = 5
+    
+        delta = 0.000001
+        eps = 2*delta
+    
+        h = (b-a)/N
+    
+        allocate(array1(N))
+        do k = 1, N-1
+            array1(k)=func(a+k*h)
+        end do
+    
+        I0 = h*(0.5*(func(a)+func(b))+sum(array1))
+        deallocate(array1)
+    
+        do while (eps>delta)
+            N = N*2
+            h = h/2
+        
+            allocate(array1(N))
+            do k = 1, N-1, 2
+                array1(k)=func(a+k*h)
+            end do
+        
+            I = 0.5*I0+h*sum(array1)
+            deallocate(array1)
+            eps = (I-I0)/3.0
+            I0 = I
+        end do
+    
+        print *, I
+
+        end program adapint
+
+        real function func(x)
+            implicit none
+            real, intent(in) :: x
+
+            func = 2.0*sqrt(1-x*x)
+
+        end function func
+        ```
+
