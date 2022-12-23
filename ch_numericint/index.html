@@ -277,7 +277,7 @@
 <p>Use the formula derived above to implement a code that performs the following integration using adaptive integration method for trapezoidal rule with a pre-defined error <span class="arithmatex">\(\delta\)</span>:</p>
 <div class="arithmatex">\[ I = 2 \int_{-1}^{1} \sqrt{1- x^2} \]</div>
 <p>This integral should result in <span class="arithmatex">\(\pi\)</span> as it gives us the area of a unit circle. Check that you can get better (higher precision) estimates of <span class="arithmatex">\(\pi\)</span> by decreasing the pre-defined error.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Python code</label><label for="__tabbed_1_2">Fortran code</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Python code</label><label for="__tabbed_1_2">Fortran code</label><label for="__tabbed_1_3">Python code output</label><label for="__tabbed_1_4">Fortran code output</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -311,12 +311,12 @@
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
 <a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>
-<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">delta</span><span class="p">,</span><span class="w"> </span><span class="n">eps</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">I0</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="w"></span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kt">double precision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">delta</span><span class="p">,</span><span class="w"> </span><span class="n">eps</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">I0</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="w"></span>
 <a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="kt">double precision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
 <a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="k">external </span><span class="n">func</span><span class="w"></span>
 <a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>
-<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span><span class="w"></span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span><span class="w"></span>
 <a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>
 <a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
 <a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
@@ -354,17 +354,36 @@
 <a href="#__codelineno-1-46" id="__codelineno-1-46" name="__codelineno-1-46"></a>
 <a href="#__codelineno-1-47" id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="k">end program </span><span class="n">adapint</span><span class="w"></span>
 <a href="#__codelineno-1-48" id="__codelineno-1-48" name="__codelineno-1-48"></a>
-<a href="#__codelineno-1-49" id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="kt">real </span><span class="k">function </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-49" id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="kt">double precision </span><span class="k">function </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-1-50" id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="w">    </span><span class="k">implicit none</span>
-<a href="#__codelineno-1-51" id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="k">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<a href="#__codelineno-1-51" id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="k">    </span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
 <a href="#__codelineno-1-52" id="__codelineno-1-52" name="__codelineno-1-52"></a>
 <a href="#__codelineno-1-53" id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="w">    </span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-1-54" id="__codelineno-1-54" name="__codelineno-1-54"></a>
 <a href="#__codelineno-1-55" id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="k">end function </span><span class="n">func</span><span class="w"></span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>3.1415904352148765
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>real    0m4.039s
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>user    0m3.953s
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>sys 0m0.084s
+</code></pre></div>
+<p>code run using `python filename.py'; compare to the fortran code output</p>
 </div>
-</input></input></div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>3.1415915187110408     
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>real    0m0.006s
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>user    0m0.006s
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>sys 0m0000s
+</code></pre></div>
+<p>code run after compiling using GNU fortran compiler 11.3 as:</p>
+<p><code>gfortran filename.f90 -o adapint</code>; compare the execution speed with python code output</p>
+</div>
+</div>
+</input></input></input></input></div>
 </div>
 </article>
 </div>
