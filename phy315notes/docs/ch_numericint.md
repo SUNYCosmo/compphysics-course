@@ -119,12 +119,12 @@ That is in each step we only have to evaluate the new $N_i/2$ points and can reu
     
         integer :: N, k
     
-        real :: a, b, delta, eps, h, I0, I
+        double precision :: a, b, delta, eps, h, I0, I
     
-        real :: func
+        double precision :: func
         external func
     
-        real, allocatable :: array1(:)
+        double precision, allocatable :: array1(:)
     
         a = -1
         b = 1
@@ -162,12 +162,37 @@ That is in each step we only have to evaluate the new $N_i/2$ points and can reu
 
         end program adapint
 
-        real function func(x)
+        double precision function func(x)
             implicit none
-            real, intent(in) :: x
+            double precision, intent(in) :: x
 
             func = 2.0*sqrt(1-x*x)
 
         end function func
         ```
+    
+    === "Python code output"
+        ```
+        3.1415904352148765
+
+        real	0m4.039s
+        user	0m3.953s
+        sys	0m0.084s
+        ```
+        
+        code run using `python filename.py'; compare to the fortran code output
+
+    === "Fortran code output"
+        ```
+        3.1415915187110408     
+
+        real	0m0.006s
+        user	0m0.006s
+        sys	0m0000s
+        ```
+
+        code run after compiling using GNU fortran compiler 11.3 as:
+
+        `gfortran filename.f90 -o adapint`; compare the execution speed with python code output
+
 
