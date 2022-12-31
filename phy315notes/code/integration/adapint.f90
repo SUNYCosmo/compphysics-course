@@ -14,7 +14,7 @@ program adapint
     b = 1
     N = 5
     
-    delta = 0.000000000001
+    delta = 0.000001
     eps = 2.0*delta
     
     h = (b-a)/N
