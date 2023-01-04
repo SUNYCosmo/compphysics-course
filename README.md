@@ -6,3 +6,5 @@ This repository contains cousrse design elements:
 * Sample Syllabus
 
 for a course in computational and numerical methods targeted at junior physics/pre-engineering majors/minors at SUNY Plattsburgh
+
+Link to Notes page: https://sunycosmo.github.io/compphysics-course/
