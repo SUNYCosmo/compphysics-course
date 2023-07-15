@@ -100,12 +100,12 @@ That is in each step we only have to evaluate the new $N_i/2$ points and can reu
             return 2.0*np.sqrt(1-x*x)
 
         h = (b-a)/N
-        I0 = h*(0.5*(f(a)+f(b))+np.sum(np.array([f(a+k*h) for k in range(1, N-1)])))
+        I0 = h*(0.5*(f(a)+f(b))+np.sum(f(np.array([a+k*h for k in range(1, N-1)]))))
 
         while (eps>delta):
             N = N*2
             h = h/2.0
-            I = 0.5*I0+h*np.sum(np.array([f(a+k*h) for k in range(1, N-1, 2)]))
+            I = 0.5*I0+h*np.sum(f(np.array([a+k*h for k in range(1, N-1, 2)])))
             eps = (I-I0)/3.0
             I0 = I
 
@@ -175,9 +175,9 @@ That is in each step we only have to evaluate the new $N_i/2$ points and can reu
         ```
         3.1415904352148765
 
-        real	0m4.039s
-        user	0m3.953s
-        sys	0m0.084s
+        real	0m1.171s
+        user	0m1.043s
+        sys	0m0.222s
         ```
         
         code run using `python filename.py'; compare to the fortran code output
