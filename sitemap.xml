@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_diffequations/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_fitting/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_fouriertransform/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_intro/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_mltools/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_montecarlo/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_numeric/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_numericint/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/ch_symbolic/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sunycosmo.github.io/compphysics-course/references/</loc>
-         <lastmod>2022-12-23</lastmod>
+         <lastmod>2023-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
